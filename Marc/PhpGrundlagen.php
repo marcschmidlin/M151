@@ -34,7 +34,7 @@
     );
      print_r($myArray);
     //Aufgabe e
-    $aktuellermonat = date("m");
+    $aktuellermonat = date("n");
     print_r (array($aktuellermonat));
     ?>
     
