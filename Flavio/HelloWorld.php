@@ -35,8 +35,10 @@
 
     //aufgabe d
 
-    for ($x = $myArray(); $x <= $myArray; $x++) {
-        print_r("$myArray");
+    sort($myArray);
+
+    foreach ($myArray as $value) {
+        echo "$value <br>";
       }
 
     
