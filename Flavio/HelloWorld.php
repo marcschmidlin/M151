@@ -8,8 +8,46 @@
 </head>
 <body>
     <?php
-    $m1 = "Hello World";
-    echo "$m1";
+    $vorname = "Übung macht den meister"; 
+    $nachname = "Es ist noch kein meister vom Himmelrigefallen";
+    $jahrgang = 2001; //Keine Anführungzeichen
+
+    echo "Mein Name ist $vorname $nachname und ich bin im Jahr $jahrgang geboren <br>"; 
+
+    $myArray = array( 
+        $placeholder = "",
+        $monat1 = "Januar",
+        $monat2 = "Februar",
+        $monat3 = "März",
+        $monat4 = "April",
+        $monat5 = "Mai",
+        $monat6 = "Juni",
+        $monat7 = "July",
+        $monat8 = "August",
+        $monat9 = "September",
+        $monat10 = "Oktober",
+        $monat11 = "November",
+        $monat12 = "December",
+    );
+     
+    //Aufgabe e
+    print_r($myArray[date("n")]);
+
+    //aufgabe d
+
+    for ($x = $myArray(); $x <= $myArray; $x++) {
+        print_r("$myArray");
+      }
+
+    
+
+    
+
+
+
+
+    
+    
     ?>
 </body>
 </html>
