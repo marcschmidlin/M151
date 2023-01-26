@@ -15,9 +15,9 @@
     $nachnamen = "Schmidlin";
     $jahrgang = 1999; //Nummer ohne Anführungszeichen
     //Aufgabe c
-    echo "<br>Mein Name ist $vornamen $nachnamen und ich bin $jahrgang geboren.";
+    echo "<br>Mein Name ist $vornamen $nachnamen und ich bin $jahrgang geboren.<br>";
     //Aufgabe d
-    $myArray = array( 
+        $myArray = array( 
         $placeholder = "",
         $monat1 = "Januar",
         $monat2 = "Februar",
@@ -34,9 +34,15 @@
     );
      print_r($myArray);
     //Aufgabe e
+    echo"<br>";
     $aktuellermonat = date("n");
-    print_r (array($aktuellermonat));
+    print_r ($myArray[$aktuellermonat]);
+    //Aufgabe f
+    echo"<br>";
+    foreach($myArray as $content){
+        echo"$content <br>";}
     ?>
+    
     
 </body>
 </html>
