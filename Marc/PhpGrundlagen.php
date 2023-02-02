@@ -41,6 +41,11 @@
     echo"<br>";
     foreach($myArray as $content){
         echo"$content <br>";}
+    //Aufgabe g
+    echo"<br>";
+    sort($myArray);
+    foreach($myArray as $content){
+        echo"$content <br>";}
     ?>
     
     
