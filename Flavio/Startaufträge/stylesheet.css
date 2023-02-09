@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+h5 {
+    float: left;
+    display: inline-block;
+    background-color: lightgray;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 18px;
+}
+
+
+h4 {
+    float: left;
+    display: inline-block;
+    background-color: red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 18px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+div{
+    margin: 0;
+    
+}
+
+
+
