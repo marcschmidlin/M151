@@ -14,18 +14,13 @@ $lottozahlen = array();
 $zuasatzzahl = rand(1, 6);
 
 for ($i = 1; $i <= 6; $i++) {
-
     do{
         $neuezahl= rand(1, 42);
-
     }while(in_array($neuezahl, $lottozahlen));{
-
     $lottozahlen[]=$neuezahl;
     }
     }
-
     sort($lottozahlen);
-
     print_r($lottozahlen);
 
 
