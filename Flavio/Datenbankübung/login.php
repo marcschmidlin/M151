@@ -40,12 +40,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(empty($error)){
 
         // TODO SELECT Query erstellen, user und passwort mit Datenbank vergleichen
-		
+		$query = "SELECT password FROM benutzer where username=?";
         // TODO prepare()
+		$stmt = $mysqli->prepare($query);
 		// TODO bind_param()
+		$stmt->bind_param('ss',$username, $password);
 		// TODO execute()
+		$stmt->execute();
 		// TODO Passwort auslesen und mit dem eingegeben Passwort vergleichen
-		// TODO: wenn Passwort korrekt:  $message .= "Sie sind nun eingeloggt"; 
+		if($password == $_POST['password']){
+		// TODO: wenn Passwort korrekt:  $message .= "Sie sind nun eingeloggt";
+		$message = "Sie sind nun eingeloggt";}
 		// TODO: wenn Passwort falsch, oder kein Benutzer mit diesem Benutzernamem in DB: $error .= "Benutzername oder Passwort sind falsch";
 	}
 }
