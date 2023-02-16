@@ -20,16 +20,16 @@
     //for($standardziehung = 1; $standardziehung <= 6; $standardziehung ++){
          //echo "$lottozahlen[$standardziehung] <br>";
     //}
-    
     ?>
-   
-   <div id="boxNormal"><p><?php echo "$lottozahlen[1]";?></p></div> 
-   <div id="boxNormal"><p><?php echo "$lottozahlen[2]";?></p></div> 
-   <div id="boxNormal"><p><?php echo "$lottozahlen[3]";?></p></div> 
-   <div id="boxNormal"><p><?php echo "$lottozahlen[4]";?></p></div> 
-   <div id="boxNormal"><p><?php echo "$lottozahlen[5]";?></p></div>
-   <div id="boxNormal"><p><?php echo "$lottozahlen[6]";?></p></div>
-   <div id="boxZusatz"><p><?php echo "$zusatzzahl[1]";?></p></div>
+   <div id="wrapper">
+   <div class="boxNormal"><p><?php echo "$lottozahlen[1]";?></p></div> 
+   <div class="boxNormal"><p><?php echo "$lottozahlen[2]";?></p></div> 
+   <div class="boxNormal"><p><?php echo "$lottozahlen[3]";?></p></div> 
+   <div class="boxNormal"><p><?php echo "$lottozahlen[4]";?></p></div> 
+   <div class="boxNormal"><p><?php echo "$lottozahlen[5]";?></p></div>
+   <div class="boxNormal"><p><?php echo "$lottozahlen[6]";?></p></div>
+   <div class="boxZusatz"><p><?php echo "$zusatzzahl[1]";?></p></div>
    <div class="clear"><a href="<?php $_SERVER['PHP_SELF']; ?>" class="myButton">Neue Zahlen</a></div>
+   </div>
 </body>
 </html>
