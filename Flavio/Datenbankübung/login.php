@@ -40,20 +40,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(empty($error)){
 
         // TODO SELECT Query erstellen, user und passwort mit Datenbank vergleichen
-		$query = "SELECT password FROM benutzer where username=?";
+		$query = "SELECT password FROM users where username=?";
         // TODO prepare()
 		$stmt = $mysqli->prepare($query);
 		// TODO bind_param()
-		$stmt->bind_param('ss',$username, $password);
+		$stmt->bind_param('s',$username);
 		// TODO execute()
 		$stmt->execute();
 		// TODO Passwort auslesen und mit dem eingegeben Passwort vergleichen
-		if($password == $_POST['password']){
-		// TODO: wenn Passwort korrekt:  $message .= "Sie sind nun eingeloggt";
-		$message = "Sie sind nun eingeloggt";}
-		// TODO: wenn Passwort falsch, oder kein Benutzer mit diesem Benutzernamem in DB: $error .= "Benutzername oder Passwort sind falsch";
-	}
-}
+		$result=$stmt->get_result();
+        while($row = $result->fetch_assoc()){
+			if($row['password'] == $_POST['password']){
+				// TODO: wenn Passwort korrekt:  $message .= "Sie sind nun eingeloggt";
+				$message .= "Sie sind nun eingeloggt";
+                }
+				// TODO: wenn Passwort falsch, oder kein Benutzer mit diesem Benutzernamem in DB: $error .= "Benutzername oder Passwort sind falsch";
+			else{$error .= "Das Passwort entspricht nicht dem geforderten Format.<br />";}
+			}
+		}		
+        }
+	
+        
+		
 
 ?>
 <!DOCTYPE html>
