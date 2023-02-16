@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Verbindung zur Datenbank einbinden
-include('./db_connector.inc.php');
+include('dbconnector.inc.php');
 // Initialisierung
 $error = $message =  '';
 $firstname = $lastname = $email = $username = '';
