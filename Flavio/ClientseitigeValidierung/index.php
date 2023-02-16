@@ -11,18 +11,55 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   print_r($_POST);
   echo "</pre>";
 
-  /* TODO firstname vorhanden, mindestens 1 Zeichen und maximal 30 Zeichen lang*/
-  if(1==1){
-    
-    $firstname = ""; // TODO Spezielle Zeichen Escapen > Script Injection verhindern
+
+
+  // TODO: Serverseitige Validierung: firstname analog firstname
+  if(isset($_POST['firstname'])
+  && !empty(trim($_POST['firstname']))
+  && strlen(trim($_POST['firstname'])) <=30){
+    $firstname = trim(htmlspecialchars($_POST['firstname']));
   } else {
-    $error .= ""; // TODO Ausgabe Fehlermeldung
+  $error.= "Error Firstname<br />";
   }
 
   // TODO: Serverseitige Validierung: lastname analog firstname
+  if(isset($_POST['lastname'])
+  && !empty(trim($_POST['lastname']))
+  && strlen(trim($_POST['lastname'])) <=30){
+    $lastname = trim(htmlspecialchars($_POST['lastname']));
+  } else {
+  $error.= "Error Lastname<br />";
+  }
+
   // TODO: Serverseitige Validierung: email analog firstname
+  if(isset($_POST['email'])
+  && !empty(trim($_POST['email']))
+  && strlen(trim($_POST['email'])) <=100){
+  $email = trim(htmlspecialchars($_POST['email']));
+  } else {
+  $error.= "Error Email<br />";
+  }
+
   // TODO: Serverseitige Validierung: username analog firstname
-  // TODO: Serverseitige Validierung: password analog firstname
+  if(isset($_POST['username'])
+&& !empty(trim($_POST['username']))
+&& strlen(trim($_POST['username'])) <=30){
+  $username = trim(htmlspecialchars($_POST['username']));
+} else {
+$error.= "Error Username<br />";
+}
+
+// TODO: Serverseitige Validierung: password analog firstname
+if(isset($_POST['password'])
+  && !empty(trim($_POST['password']))
+  && strlen(trim($_POST['password'])) <=255){
+  $password = trim(htmlspecialchars($_POST['password']));
+  } else {
+  $error.= "Error password<br />";
+  }
+
+
+  
 }
 ?>
 
@@ -62,35 +99,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <!-- TODO: Clientseitige Validierung: vorname -->
         <div class="form-group">
           <label for="firstname">Vorname *</label>
-          <input type="text" name="firstname" class="form-control" id="firstname"
+          <input type="text" name="firstname" class="form-control" id="firstname" maxlength="30" required
                   value="<?php echo $firstname ?>"
                   placeholder="Geben Sie Ihren Vornamen an.">
         </div>
         <!-- TODO: Clientseitige Validierung: nachname -->
         <div class="form-group">
           <label for="lastname">Nachname *</label>
-          <input type="text" name="lastname" class="form-control" id="lastname"
+          <input type="text" name="lastname" class="form-control" id="lastname" maxlength="30" required
                   value="<?php echo $lastname ?>"
                   placeholder="Geben Sie Ihren Nachnamen an">
         </div>
         <!-- TODO: Clientseitige Validierung: email -->
         <div class="form-group">
           <label for="email">Email *</label>
-          <input type="email" name="email" class="form-control" id="email"
+          <input type="email" name="email" class="form-control" id="email" maxlength="100" required
                   value="<?php echo $email ?>"
                   placeholder="Geben Sie Ihre Email-Adresse an.">
         </div>
         <!-- TODO: Clientseitige Validierung: benutzername -->
         <div class="form-group">
           <label for="username">Benutzername *</label>
-          <input type="text" name="username" class="form-control" id="username"
+          <input type="text" name="username" class="form-control" id="username" maxlength="30" required
                   value="<?php echo $username ?>"
                   placeholder="Gross- und Keinbuchstaben, min 6 Zeichen.">
         </div>
         <!-- TODO: Clientseitige Validierung: password -->
         <div class="form-group">
           <label for="password">Password *</label>
-          <input type="password" name="password" class="form-control" id="password"
+          <input type="password" name="password" class="form-control" id="password" maxlength="255" required
                   placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute">
         </div>
         <button type="submit" name="button" value="submit" class="btn btn-info">Senden</button>
