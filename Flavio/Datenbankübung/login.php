@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(empty($error)){
 
         // TODO SELECT Query erstellen, user und passwort mit Datenbank vergleichen
+		
         // TODO prepare()
 		// TODO bind_param()
 		// TODO execute()
