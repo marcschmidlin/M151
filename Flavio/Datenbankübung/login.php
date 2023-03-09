@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(isset($_POST['password'])){
 		//trim
 		$password = trim($_POST['password']);
+		
 		// passwort gültig?
 		if(empty($password) || !preg_match("/(?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)){
 			$error .= "Das Passwort entspricht nicht dem geforderten Format.<br />";
@@ -35,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	} else {
 		$error .= "Geben Sie bitte das Passwort an.<br />";
 	}
-	
 	// kein fehler
 	if(empty($error)){
 
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		// TODO Passwort auslesen und mit dem eingegeben Passwort vergleichen
 		$result=$stmt->get_result();
         while($row = $result->fetch_assoc()){
-			if($row['password'] == $_POST['password']){
+			if (password_verify($password, $row['password'])){
 				// TODO: wenn Passwort korrekt:  $message .= "Sie sind nun eingeloggt";
 				$message .= "Sie sind nun eingeloggt";
                 }

@@ -68,7 +68,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   // passwort ausgefüllt
   if(isset($_POST['password'])){
     //trim and sanitize
+   
     $password = trim($_POST['password']);
+    
     
     //mindestens 1 Zeichen , entsprich RegEX
     if(empty($password) || !preg_match("/(?=^.{8,255}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)){
@@ -77,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   } else {
     $error.= "Geben Sie bitte ein Password ein.<br />";
   }
-
+    $hash = password_hash($password, PASSWORD_DEFAULT);
   // wenn kein Fehler vorhanden ist, schreiben der Daten in die Datenbank
   if(empty($error)){
     // TODO: INPUT Query erstellen, welches firstname, lastname, username, password, email in die Datenbank schreibt
@@ -88,7 +90,7 @@ if ($stmt === false) {
     $error .= 'prepare() failed ' . $mysqli->error . '<br />';
 }
     // TODO: Parameter an Query binden mit bind_param();
-    if (!$stmt->bind_param('sssss', $firstname, $lastname, $username, $password, $email)) {
+    if (!$stmt->bind_param('sssss', $firstname, $lastname, $username, $hash, $email)) {
       $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
   }
     // TODO: query ausführen mit execute();
