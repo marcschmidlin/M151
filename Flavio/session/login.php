@@ -1,6 +1,8 @@
 <?php
 
+
 // TODO - Sessionhandling starten
+session_start();
 
 
 // Datenbankverbindung
@@ -66,12 +68,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (password_verify($password, $row['password'])) {
 
 				// TODO - Session personifizieren
-
+				$_SESSION['loggedin'] = true;
+				$_SESSION['username'] = $username;
+				
+				
 				// TODO - Session ID regenerieren
-
+				session_regenerate_id();
 				// TODO - weiterleiten auf admin.php
-
+				header('location: admin.php');
 				// TODO - Script beenden
+				exit;
 
 			} else {
 				$error .= "Benutzername oder Passwort sind falsch";
@@ -109,11 +115,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<?php
+				
+				
 				// TODO - wenn Session personalisiert
+				if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
+					// Session nicht OK,  Weiterleitung auf Anmeldung
+					//  Script beenden	
 					echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
-				// TODO wenn Session nicht personalisiert
+					
+				} else{
+				
+					// TODO wenn Session nicht personalisiert
+					
+				 
+				
 					echo '<li class="nav-item"><a class="nav-link" href="register.php">Registrierung</a></li>';
 					echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+			}
 				?>
 			</ul>
 		</div>

@@ -1,6 +1,7 @@
 <?php
 
 // TODO - Sessionhandling starten
+session_start();
 
 
 // Datenbankverbindung

@@ -1,14 +1,21 @@
 <?php
 
+
 // TODO - Session starten
 session_start();
 // variablen initialisieren
 $error = $message = '';
 
-// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
-    $message .= " ... ";
-// TODO - wenn keine Personalisierte Session
+if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
+    // TODO - wenn keine Personalisierte Session
     $error .= "Sie sind nicht angemeldet, melden Sie sich bitte auf der  <a href='login.php'>Login-Seite</a> an.";
+}else{
+    // Session nicht OK,  Weiterleitung auf Anmeldung
+    //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
+    $username=  $_SESSION['username'] ;
+$message .= "Hallo $username"  ;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +44,17 @@ $error = $message = '';
             <ul class="navbar-nav mr-auto">
 
                 <?php
+
+if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
+    echo '<li class="nav-item"><a class="nav-link" href="register.php">Registrierung</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+}else{
+ // TODO - wenn Session nicht personalisiert
                 // TODO - wenn Session personalisiert
-                    echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
-                // TODO - wenn Session nicht personalisiert
-                    echo '<li class="nav-item"><a class="nav-link" href="register.php">Registrierung</a></li>';
-                    echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
+}
+                
+                
                 ?>
             </ul>
         </div>
