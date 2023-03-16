@@ -1,7 +1,7 @@
 <?php
 
 // TODO - Session starten
-
+session_start();
 // variablen initialisieren
 $error = $message = '';
 
