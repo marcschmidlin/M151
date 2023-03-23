@@ -122,13 +122,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					// Session nicht OK,  Weiterleitung auf Anmeldung
 					//  Script beenden	
 					echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
-					
 				} else{
 				
 					// TODO wenn Session nicht personalisiert
-					
-				 
-				
 					echo '<li class="nav-item"><a class="nav-link" href="register.php">Registrierung</a></li>';
 					echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
 			}
