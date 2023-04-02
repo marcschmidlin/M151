@@ -18,11 +18,11 @@ USE `Trainingsplan` ;
 -- Table `Trainingsplan`.`Benutzer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Benutzer` (
-  `idBenutzer` INT NOT NULL,
+  `idBenutzer` INT NOT NULL  AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   `Vorname` VARCHAR(45) NULL,
   `Alter` INT NULL,
-  `E-Mail` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
   `Passwort` VARCHAR(255) NULL,
   `Gewicht` INT NULL,
   PRIMARY KEY (`idBenutzer`))
