@@ -1,3 +1,159 @@
+<?php
+// Datenbankverbindung
+include('./database/db_connector.inc.php');
+
+// TODO - Session starten
+session_start();
+// variablen initialisieren
+$error = $message = '';
+$uebungname = $zielmuskel = '';
+
+if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
+    // TODO - wenn keine Personalisierte Session
+    $error .= "Sie sind nicht angemeldet, melden Sie sich bitte auf der  <a href='login.php'>Login-Seite</a> an.";
+}else{
+    // Session nicht OK,  Weiterleitung auf Anmeldung
+    //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
+    $email=  $_SESSION['email'] ;
+$message .= "Hallo $email"  ;
+}
+
+
+if (empty($error)) {
+  // Query erstellen
+  $query = "SELECT * from benutzer where email =?";
+  
+  // Query vorbereiten
+  $stmt = $mysqli->prepare($query);
+  if ($stmt === false) {
+    $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+  }
+  // Parameter an Query binden
+  if (!$stmt->bind_param("s", $email)) {
+    $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+  }
+  // Query ausführen
+  if (!$stmt->execute()) {
+    $error .= 'execute() failed ' . $mysqli->error . '<br />';
+  }
+  // Daten auslesen
+  $result = $stmt->get_result();
+
+  while($row = $result->fetch_assoc()){
+
+    $vorname = $row['Vorname'];
+    $nachname = $row['Name'];
+    $email = $row['email'];
+    $alter = $row['Alter'];
+    $gewicht = $row['Gewicht'];
+
+
+}
+
+$result->free();
+
+  
+}
+
+
+
+
+// Abfrage ausführen, wenn keine Fehler vorhanden sind
+if (empty($error)) {
+    // Query vorbereiten
+    $query = "SELECT * FROM uebungen";
+    $stmt = $mysqli->prepare($query);
+    if (!$stmt) {
+      $error .= "Query-Vorbereitung fehlgeschlagen: (" . $mysqli->errno . ") " . $mysqli->error;
+    }
+  
+    // Query ausführen und Daten auslesen
+    if (!$stmt->execute()) {
+      $error .= "Query-Ausführung fehlgeschlagen: (" . $stmt->errno . ") " . $stmt->error;
+    } else {
+      $result = $stmt->get_result();
+      while ($row = $result->fetch_assoc()) {
+        // Datenverarbeitung hier
+
+        
+        
+      }
+      $result->free();
+
+    }
+  
+    // Statement schließen
+    $stmt->close();
+  }
+
+
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Vorname ausgefüllt?
+  if (isset($_POST['uebungname'])) {
+    //trim and sanitize
+    $uebungname = htmlspecialchars(trim($_POST['uebungname']));
+
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($uebungname) || strlen($uebungname) > 30) {
+      $error .= "Geben Sie bitte einen korrekten Vornamen ein.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte einen Vornamen ein.<br />";
+  }
+
+  // Nachname ausgefüllt?
+  if (isset($_POST['zielmuskel'])) {
+    //trim and sanitize
+    $zielmuskel = htmlspecialchars(trim($_POST['zielmuskel']));
+
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($zielmuskel) || strlen($zielmuskel) > 30) {
+      $error .= "Geben Sie bitte einen korrekten Nachname ein.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte einen Nachname ein.<br />";
+  }
+    
+    $query = "Insert into uebungen (Uebungname, Zielmuskel) values (?,?)";
+    
+    // Query vorbereiten
+    $stmt = $mysqli->prepare($query);
+    if ($stmt === false) {
+      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+    }
+    
+    // Parameter an Query binden
+    if (!$stmt->bind_param('ss', $uebungname, $zielmuskel)) {
+      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+    }
+
+    // Query ausführen
+    if (!$stmt->execute()) {
+      $error .= 'execute() failed ' . $mysqli->error . '<br />';
+    }
+
+    // kein Fehler!
+    if (empty($error)) {
+      $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
+      // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
+
+      // Verbindung schliessen
+      $mysqli->close();
+      // Weiterleiten auf login.php
+     
+      // beenden des Scriptes
+      
+    }
+  }
+
+
+    
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,15 +252,46 @@
         </div>
 
       </div>
-    </section><!-- End Breadcrumbs -->
-
-    <section class="inner-page">
+      <section class="inner-page">
       <div class="container">
-        <p>
-          Example inner page template
-        </p>
+        <h2>
+          Willkommen Zurück <?php echo $vorname?>
+</h2>
       </div>
     </section>
+
+
+
+
+      <form action="" method="post">
+      <!-- Uebungname -->
+      <div class="form-group">
+        <label for="uebungname">Uebungname *</label>
+        <input type="text" name="uebungname" class="form-control" id="uebungname" value="<?php echo $uebungname ?>"  placeholder="Geben Sie den Übungsnamen an." maxlength="30" required="true">
+      </div>
+      <!-- Zielmuskel -->
+      <div class="form-group">
+        <label for="zielmuskel">Zielmuskel *</label>
+        <input type="text" name="zielmuskel" class="form-control" id="zielmuskel" value=""<?php echo $zielmuskel ?> placeholder="Geben Sie den Zielmuskel an" maxlength="30" required="true">
+      </div>
+     
+
+
+
+      <!-- Send / Reset -->
+      <button type="submit" name="button" value="submit" class="btn btn-info">Hinzufügen</button>
+    </form>
+  </div>
+
+
+
+    </section>
+    <!-- End Breadcrumbs -->
+
+
+
+
+  
 
   </main><!-- End #main -->
 

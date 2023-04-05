@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				// TODO - Session ID regenerieren
 				session_regenerate_id();
 				// TODO - weiterleiten auf admin.php
-				header('location: signup.php');
+				header('location: ../inner-page.php');
 				// TODO - Script beenden
 				exit;
 
