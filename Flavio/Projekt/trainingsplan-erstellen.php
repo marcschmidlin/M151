@@ -6,7 +6,7 @@ include('./database/db_connector.inc.php');
 session_start();
 // variablen initialisieren
 $error = $message = '';
-$uebungname = $zielmuskel = '';
+$uebungname = $zielmuskel =  $trainingsplanname = '';
 
 if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
     // TODO - wenn keine Personalisierte Session
@@ -76,7 +76,6 @@ if (empty($error)) {
         // Datenverarbeitung hier
 
         
-        
       }
       $result->free();
 
@@ -88,7 +87,7 @@ if (empty($error)) {
 
 
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Vorname ausgefüllt?
+    // Uebungsname ausgefüllt?
   if (isset($_POST['uebungname'])) {
     //trim and sanitize
     $uebungname = htmlspecialchars(trim($_POST['uebungname']));
@@ -98,10 +97,10 @@ if (empty($error)) {
       $error .= "Geben Sie bitte einen korrekten Vornamen ein.<br />";
     }
   } else {
-    $error .= "Geben Sie bitte einen Vornamen ein.<br />";
+    $error .= "Geben Sie bitte einen Uebungsnamen ein.<br />";
   }
 
-  // Nachname ausgefüllt?
+  // Zielmuskel ausgefüllt?
   if (isset($_POST['zielmuskel'])) {
     //trim and sanitize
     $zielmuskel = htmlspecialchars(trim($_POST['zielmuskel']));
@@ -111,8 +110,9 @@ if (empty($error)) {
       $error .= "Geben Sie bitte einen korrekten Nachname ein.<br />";
     }
   } else {
-    $error .= "Geben Sie bitte einen Nachname ein.<br />";
+    $error .= "Geben Sie bitte einen Zielmuskel ein.<br />";
   }
+
     
     $query = "Insert into uebungen (Uebungname, Zielmuskel) values (?,?)";
     
@@ -192,6 +192,29 @@ if (empty($error)) {
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+		/* Stil für das Pop-up */
+		#popup {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		/* Stil für das Formular im Pop-up */
+		#form {
+			background-color: #fefefe;
+			margin: 15% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+		}
+	</style>
 
 <body>
 
@@ -260,26 +283,73 @@ if (empty($error)) {
       </div>
     </section>
 
+    <label for="planname">Trainingsplan Name:</label>
+	<input type="text" id="planname" name="planname"><br><br>
+
+	<button onclick="openPopup()">+</button>
+
+    <form action="" method="post">
+	<div id="popup">
+		<div id="form">
+			<h2>Übung hinzufügen</h2>
+			<form>
+				<!-- Übungsname -->
+				<div class="form-group">
+					<label for="uebungname">Übungsname:</label>
+					<input type="text" id="uebungname" name="uebungname" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+				</div>
+
+				<!-- Zielmuskel -->
+				<div class="form-group">
+					<label for="zielmuskel">Zielmuskel:</label>
+					<input type="text" id="zielmuskel" name="zielmuskel" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required>
+				</div>
+
+				<!-- Gewicht -->
+				<div class="form-group">
+					<label for="weight">Gewicht:</label>
+					<input type="text" id="weight" name="weight" placeholder="Geben Sie das Gewicht an." maxlength="10">
+				</div>
+
+                <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
+                <button type="button" onclick="closePopup()">Abbrechen</button>
+			</form>
+		</div>
+	</div>
+
+    
+	<script>
+		// Funktionen für das Pop-up
+		function openPopup() {
+			document.getElementById("popup").style.display = "block";
+		}
+
+		function closePopup() {
+			document.getElementById("popup").style.display = "none";
+		}
+
+		// Funktion zum Hinzufügen der Übung
+		function saveExercise() {
+			var exercise = document.getElementById("exercise").value;
+			var muscle = document.getElementById("muscle").value;
+			var weight = document.getElementById("weight").value;
+
+			// Hier können Sie den Code einfügen, um die Übung zu speichern (z.B. in einer Datenbank oder im Local Storage)
+
+			closePopup(); // Schließen des Pop-ups
+		}
+	</script>
 
 
 
-      <form action="" method="post">
-      <!-- Uebungname -->
-      <div class="form-group">
-        <label for="uebungname">Uebungname *</label>
-        <input type="text" name="uebungname" class="form-control" id="uebungname" value="<?php echo $uebungname ?>"  placeholder="Geben Sie den Übungsnamen an." maxlength="30" required="true">
-      </div>
-      <!-- Zielmuskel -->
-      <div class="form-group">
-        <label for="zielmuskel">Zielmuskel *</label>
-        <input type="text" name="zielmuskel" class="form-control" id="zielmuskel" value=""<?php echo $zielmuskel ?> placeholder="Geben Sie den Zielmuskel an" maxlength="30" required="true">
-      </div>
+
+      
      
 
 
 
       <!-- Send / Reset -->
-      <button type="submit" name="button" value="submit" class="btn btn-info">Hinzufügen</button>
+      <button type="submit" name="button" value="submit" class="btn btn-info">Trainingsplan Speichern</button>
     </form>
   </div>
 
