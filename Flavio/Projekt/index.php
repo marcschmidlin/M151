@@ -189,23 +189,23 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
           <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
             <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-receipt"></i>
-              <h4>Est labore ad</h4>
-              <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+              <h4>Trainingsplan generierung</h4>
+              <p>Erstellen Sie mit unserem einfachen Trainingsplan und unseren Vorlagen schnell und einfach Ihr eigenes Trainingsprogramm.</p>
             </div>
             <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-cube-alt"></i>
-              <h4>Harum esse qui</h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+              <h4>Tracking</h4>
+              <p>Unser Tracking-System ermöglicht es Ihnen, Ihre Fortschritte in Bezug auf Gesundheit und Lebensstil zu verfolgen.</p>
             </div>
             <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-images"></i>
-              <h4>Aut occaecati</h4>
-              <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+              <h4>Professionele Coaches</h4>
+              <p>Wir bieten professionelle Coachings durch erfahrene Wettkampf Coaches an.</p>
             </div>
             <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-shield"></i>
-              <h4>Beatae veritatis</h4>
-              <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+              <h4>Fortschritt Analyse</h4>
+              <p>Nutzen Sie unsere Fortschritt Grafiken, um Ihre Erfolge visuell zu verfolgen und motiviert zu bleiben.</p>
             </div>
           </div>
         </div>
@@ -218,56 +218,56 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Services</h2>
-          <p>Check our Services</p>
+          <h2>FM Fitness</h2>
+          <p>Vorteile</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <h4><a href="">Sportart Unabhängig</a></h4>
+              <p>Ermöglicht Sportlern Ihre Übungen und Trainings zu Tracken.</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <h4><a href="">Kostenlose Trainingspläne</a></h4>
+              <p>Kostenlose Profi-Trainingspläne für Anfänger bis Profis</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <h4><a href="">Gewicht</a></h4>
+              <p>FM Fitness bietet durch verschiedene Funktionen traking von Gewichts ab- oder zunahme</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <h4><a href="">Weltweite Community</a></h4>
+              <p>Weltweite Fitness Community die dich Motiviert und mit dir Fortschritte erzielt</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+              <h4><a href="">1 zu 1 Video Coaching</a></h4>
+              <p>Erfahre Trainings mit Professionelen Coaches im 1 zu 1 Online</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+              <div class="icon"><i class="bi-calendar2-heart"></i></div>
+              <h4><a href="">Gesundheit</a></h4>
+              <p>Gesundheitsunterstützende Funktionen für ein angenehmes Leben</p>
             </div>
           </div>
 
@@ -281,9 +281,9 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
       <div class="container" data-aos="zoom-in">
 
         <div class="text-center">
-          <h3>Call To Action</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a class="cta-btn" href="#">Call To Action</a>
+          <h3>Kostenlose Registrierung</h3>
+          <p> Registrieren Sie sich jetzt kostenlos und starten Sie Ihre Reise zu einem gesünderen und fitteren Lebensstil</p>
+          <a class="cta-btn" href="./login/signup.php">Jetzt Registrieren</a>
         </div>
 
       </div>
@@ -295,16 +295,16 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
 
         <div class="section-title">
           <h2>Portfolio</h2>
-          <p>Check our Portfolio</p>
+          <p>Unsere Athleten</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-app">Profis</li>
+              <li data-filter=".filter-card">Fortgeschritten</li>
+              <li data-filter=".filter-web">Beginner</li>
             </ul>
           </div>
         </div>
@@ -450,32 +450,32 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
           <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div>
           <div class="col-xl-7 ps-0 ps-lg-5 pe-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100">
             <div class="content d-flex flex-column justify-content-center">
-              <h3>Voluptatem dignissimos provident quasi</h3>
+              <h3>Zufriedenheit</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                Durch die Kundenbewertungen, wir FM Fitness ständig verbessert und kann somit weitgehend verbessert werden.
               </p>
               <div class="row">
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="65" data-purecounter-duration="2" class="purecounter"></span>
-                    <p><strong>Happy Clients</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut.</p>
+                    <span data-purecounter-start="0" data-purecounter-end="1800000" data-purecounter-duration="2" class="purecounter"></span>
+                    <p><strong>Glücklinge Kunden</strong> FM Fitness hat Zur Zeit eine ungruabliche Anzahl an Kunden.</p>
                   </div>
                 </div>
 
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="bi bi-journal-richtext"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="2" class="purecounter"></span>
-                    <p><strong>Projects</strong> adipisci atque cum quia aspernatur totam laudantium et quia dere tan</p>
+                    <span data-purecounter-start="0" data-purecounter-end="75000" data-purecounter-duration="2" class="purecounter"></span>
+                    <p><strong>Trainingspläne</strong> Mit FM Fitness wurden ein haufen Trainingspläne generiert.</p>
                   </div>
                 </div>
 
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="bi bi-clock"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="35" data-purecounter-duration="4" class="purecounter"></span>
-                    <p><strong>Years of experience</strong> aut commodi quaerat modi aliquam nam ducimus aut voluptate non vel</p>
+                    <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="4" class="purecounter"></span>
+                    <p><strong>Erfahrung</strong> FM Fitness gibt es bereits seit 2013 und hat bereits 10 Jahre Erfahrung.</p>
                   </div>
                 </div>
 
@@ -483,7 +483,7 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
                   <div class="count-box">
                     <i class="bi bi-award"></i>
                     <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="4" class="purecounter"></span>
-                    <p><strong>Awards</strong> rerum asperiores dolor alias quo reprehenderit eum et nemo pad der</p>
+                    <p><strong>Awards</strong> Viele Awards gingen bereits an FM Fitness darunter der beste Trainingsplaner.</p>
                   </div>
                 </div>
               </div>
@@ -614,7 +614,7 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
               </div>
               <div class="member-info">
                 <h4>Flavio Schaffner</h4>
-                <span>60KG Bodybuilder</span>
+                <span>Profi Bodybuilder</span>
               </div>
             </div>
           </div>
@@ -680,18 +680,18 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>Pratteln Lachmatt</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>info@fmfitness.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
+                <h4>Telefon:</h4>
                 <p>+1 5589 55488 55s</p>
               </div>
 
