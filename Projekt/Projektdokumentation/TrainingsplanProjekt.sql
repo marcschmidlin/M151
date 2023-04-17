@@ -18,7 +18,7 @@ USE `Trainingsplan` ;
 -- Table `Trainingsplan`.`Benutzer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Benutzer` (
-  `idBenutzer` INT NOT NULL  AUTO_INCREMENT,
+  `idBenutzer` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   `Vorname` VARCHAR(45) NULL,
   `Alter` INT NULL,
@@ -33,10 +33,11 @@ ENGINE = InnoDB;
 -- Table `Trainingsplan`.`Trainingplan`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Trainingplan` (
-  `idTrainingplan` INT NOT NULL,
+  `idTrainingplan` INT NOT NULL AUTO_INCREMENT,
   `Benutzer_idBenutzer` INT NOT NULL,
   `Satzanzahl` INT NULL,
   `Gewicht` INT NULL,
+  `TrainingsplanName` VARCHAR(45) NULL,
   PRIMARY KEY (`idTrainingplan`),
   INDEX `fk_Trainingplan_Benutzer_idx` (`Benutzer_idBenutzer` ASC) ,
   CONSTRAINT `fk_Trainingplan_Benutzer`
@@ -51,7 +52,7 @@ ENGINE = InnoDB;
 -- Table `Trainingsplan`.`Uebungen`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Uebungen` (
-  `idUebungen` INT NOT NULL,
+  `idUebungen` INT NOT NULL AUTO_INCREMENT,
   `Uebungname` VARCHAR(100) NULL,
   `Zielmuskel` VARCHAR(45) NULL,
   `Beschreibung` MEDIUMTEXT NULL,
