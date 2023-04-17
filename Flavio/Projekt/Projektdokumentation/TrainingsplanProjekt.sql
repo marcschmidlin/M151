@@ -18,11 +18,11 @@ USE `Trainingsplan` ;
 -- Table `Trainingsplan`.`Benutzer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Benutzer` (
-  `idBenutzer` INT NOT NULL,
+  `idBenutzer` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   `Vorname` VARCHAR(45) NULL,
   `Alter` INT NULL,
-  `E-Mail` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
   `Passwort` VARCHAR(255) NULL,
   `Gewicht` INT NULL,
   PRIMARY KEY (`idBenutzer`))
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `Trainingsplan`.`Trainingplan`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Trainingplan` (
-  `idTrainingplan` INT NOT NULL,
+  `idTrainingplan` INT NOT NULL AUTO_INCREMENT,
   `Benutzer_idBenutzer` INT NOT NULL,
   `Satzanzahl` INT NULL,
   `Gewicht` INT NULL,
@@ -77,6 +77,24 @@ CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Trainingsplan_hat_Uebungen` (
   CONSTRAINT `fk_Uebungen_has_Trainingplan_Trainingplan1`
     FOREIGN KEY (`Trainingplan_idTrainingplan`)
     REFERENCES `Trainingsplan`.`Trainingplan` (`idTrainingplan`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Trainingsplan`.`Gewicht`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Gewicht` (
+  `idGewicht` INT NOT NULL AUTO_INCREMENT,
+  `Datum` DATE NULL,
+  `Gewicht` INT NULL,
+  `Benutzer_idBenutzer` INT NOT NULL,
+  PRIMARY KEY (`idGewicht`),
+  INDEX `fk_Gewicht_Benutzer1_idx` (`Benutzer_idBenutzer` ASC) VISIBLE,
+  CONSTRAINT `fk_Gewicht_Benutzer1`
+    FOREIGN KEY (`Benutzer_idBenutzer`)
+    REFERENCES `Trainingsplan`.`Benutzer` (`idBenutzer`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

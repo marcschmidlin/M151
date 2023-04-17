@@ -6,6 +6,7 @@ include('./database/db_connector.inc.php');
 session_start();
 // variablen initialisieren
 $error = $message = '';
+$gewicht = $datumgewicht =  '';
 
 if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
     // TODO - wenn keine Personalisierte Session
@@ -40,24 +41,116 @@ if (empty($error)) {
 
   while($row = $result->fetch_assoc()){
 
+    $idBenutzer =$row['idBenutzer'];
     $vorname = $row['Vorname'];
     $nachname = $row['Name'];
     $email = $row['email'];
     $alter = $row['Alter'];
-    $gewicht = $row['Gewicht'];
+
 
 
 }
-
 $result->free();
-
-  
 }
 
 
 
 
+// Abfrage ausführen, wenn keine Fehler vorhanden sind
+if (empty($error)) {
+    // Query vorbereiten
+    $query = "SELECT * FROM Gewicht";
+    $stmt = $mysqli->prepare($query);
+    if (!$stmt) {
+      $error .= "Query-Vorbereitung fehlgeschlagen: (" . $mysqli->errno . ") " . $mysqli->error;
+    }
+  
+    // Query ausführen und Daten auslesen
+    if (!$stmt->execute()) {
+      $error .= "Query-Ausführung fehlgeschlagen: (" . $stmt->errno . ") " . $stmt->error;
+    } else {
+      $result = $stmt->get_result();
+      while ($row = $result->fetch_assoc()) {
+        // Datenverarbeitung hier
+
+        
+      }
+      $result->free();
+
+    }
+  
+    // Statement schließen
+    $stmt->close();
+  }
+
+
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Uebungsname ausgefüllt?
+  if (isset($_POST['gewicht'])) {
+    //trim and sanitize
+    $gewicht = htmlspecialchars(trim($_POST['gewicht']));
+   
+
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($gewicht) || strlen($gewicht) > 30) {
+      $error .= "Geben Sie ein korrektes gewicht an.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte Gewicht ein.<br />";
+  }
+
+  // datum ausgefüllt?
+  if (isset($_POST['datumgewicht'])) {
+    //trim and sanitize
+    $datumgewicht = htmlspecialchars(trim($_POST['datumgewicht']));
+
+
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($datumgewicht) || strlen($datumgewicht) > 30) {
+      $error .= "Geben Sie bitte einen korrektes gewicht ein.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte einen Gewichtsdatum ein.<br />";
+  }
+
+    
+    $query = "Insert into gewicht (Datum, Gewicht) values (?,?)";
+    echo $gewicht;
+    
+    // Query vorbereiten
+    $stmt = $mysqli->prepare($query);
+    if ($stmt === false) {
+      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+    }
+    
+    // Parameter an Query binden
+    if (!$stmt->bind_param('ss', $datumgewicht, $gewicht)) {
+      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+    }
+
+    // Query ausführen
+    if (!$stmt->execute()) {
+      $error .= 'execute() failed ' . $mysqli->error . '<br />';
+    }
+
+    // kein Fehler!
+    if (empty($error)) {
+      $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
+      // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
+      // Verbindung schliessen
+      $mysqli->close();
+      // Weiterleiten auf login.php
+     
+      // beenden des Scriptes
+      
+    }
+  }
+
+
+   
 ?>
+
+
 
 
 
@@ -154,67 +247,56 @@ $result->free();
           <h2>Inner Page</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Inner Page</li>
+            <li>Gewicht Tracking</li>
           </ol>
         </div>
 
       </div>
-    </section><!-- End Breadcrumbs -->
-
-    <section class="inner-page">
+      <section class="inner-page">
       <div class="container">
         <h2>
           Willkommen Zurück <?php echo $vorname?>
 </h2>
+<h3>Tracke dein Gewicht</h3>
       </div>
     </section>
 
+    
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container" data-aos="fade-up">
+    <form action="" method="post">
+		
+			<h2>Gewicht hinzufügen</h2>
+			
 
-        <div class="section-title">
-          <h2>Funktionen Überischt</h2>
-          <p>Was willst du als nächstes machen?</p>
-        </div>
+				<!-- Datum -->
+				<div class="form-group">
+					<label for="datumgewicht">Datum:</label>
+					<input type="date" id="datumgewicht" name="datumgewicht" placeholder="Geben Sie din Gewicht an."  required>
+				</div>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <a href="./index.php">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="./index.php">Deine Trainingspläne</a></h4>
-              <p>Verwende einer deiner erstellten Trainingspläne</p>
-            </div>
-            </a>
-          </div>
+				<!-- Gewicht -->
+				<div class="form-group">
+					<label for="gewicht">Gewicht:</label>
+					<input type="number" id="gewicht" name="gewicht" placeholder="Geben Sie das Gewicht an." maxlength="10">
+				</div>
 
-          
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <a href="./trainingsplan-erstellen.php">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="./traingsplan-erstellen.php">Trainingsplan erstellen</a></h4>
-              <p>Erstelle dir einen neuen Trainingsplan oder füge einen aus der Gallerie hinzu.</p>
-            </div>
-            </a>
-          </div>
-          
+                <button type="submit" name="button" value="submit" class="btn btn-info">Gewicht Speichern</button>
+           
+                
+			
+		
+    </form>
+  </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-          <a href="./gewicht.php">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="./gewicht.php">Gewicht</a></h4>
-              <p>Trage dein Gewicht ein um dein Tracking aufrecht zu erhalten.</p>
-            </div>
-          </div>
-</a>
-        </div>
 
-      </div>
-    </section><!-- End Services Section -->
+
+    </section>
+    <!-- End Breadcrumbs -->
+
+
+
+
+  
 
   </main><!-- End #main -->
 
