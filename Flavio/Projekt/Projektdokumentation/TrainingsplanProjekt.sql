@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Gewicht` (
   `Gewicht` INT NULL,
   `Benutzer_idBenutzer` INT NOT NULL,
   PRIMARY KEY (`idGewicht`),
-  INDEX `fk_Gewicht_Benutzer1_idx` (`Benutzer_idBenutzer` ASC) VISIBLE,
+  INDEX `fk_Gewicht_Benutzer1_idx` (`Benutzer_idBenutzer` ASC),
   CONSTRAINT `fk_Gewicht_Benutzer1`
     FOREIGN KEY (`Benutzer_idBenutzer`)
     REFERENCES `Trainingsplan`.`Benutzer` (`idBenutzer`)
