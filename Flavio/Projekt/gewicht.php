@@ -56,6 +56,14 @@ $result->free();
 
 
 
+
+
+
+
+
+
+
+
 // Abfrage ausführen, wenn keine Fehler vorhanden sind
 if (empty($error)) {
     // Query vorbereiten
@@ -114,8 +122,9 @@ if (empty($error)) {
   }
 
     
-    $query = "Insert into gewicht (Datum, Gewicht) values (?,?)";
-    echo $gewicht;
+    $query = "Insert into gewicht (Benutzer_idBenutzer, Datum, Gewicht) values (?, ?,?)";
+    
+    
     
     // Query vorbereiten
     $stmt = $mysqli->prepare($query);
@@ -124,7 +133,7 @@ if (empty($error)) {
     }
     
     // Parameter an Query binden
-    if (!$stmt->bind_param('ss', $datumgewicht, $gewicht)) {
+    if (!$stmt->bind_param('sss',$idBenutzer, $datumgewicht, $gewicht)) {
       $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
     }
 
@@ -138,7 +147,7 @@ if (empty($error)) {
       $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
       // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
       // Verbindung schliessen
-      $mysqli->close();
+     
       // Weiterleiten auf login.php
      
       // beenden des Scriptes
@@ -156,6 +165,7 @@ if (empty($error)) {
 
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <head>
   <meta charset="utf-8">
@@ -192,6 +202,9 @@ if (empty($error)) {
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+
+
+
 
 <body>
 
@@ -269,6 +282,7 @@ if (empty($error)) {
 			
 
 				<!-- Datum -->
+                
 				<div class="form-group">
 					<label for="datumgewicht">Datum:</label>
 					<input type="date" id="datumgewicht" name="datumgewicht" placeholder="Geben Sie din Gewicht an."  required>
@@ -287,6 +301,120 @@ if (empty($error)) {
 		
     </form>
   </div>
+
+  <h2>Eingetragene Gewichte</h2>
+<style>
+    ul.gewicht-liste {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.gewicht-liste li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background-color: #f7f7f7;
+  color: #333;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+ul.gewicht-liste li:hover {
+  background-color: #eaeaea;
+}
+
+
+</style>
+
+
+  
+<!-- Zuerst benötigen wir die Google Charts API -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 
+<?php
+// Erstellen der Abfrage und Ausführen, um die Daten aus der Datenbank zu erhalten
+if (empty($error)) {
+    // Query erstellen
+    $query = "SELECT * from gewicht where Benutzer_idBenutzer =?";
+    
+    // Query vorbereiten
+    $stmt = $mysqli->prepare($query);
+    if ($stmt === false) {
+      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+    }
+    // Parameter an Query binden
+    if (!$stmt->bind_param("s", $idBenutzer)) {
+      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+    }
+    // Query ausführen
+    if (!$stmt->execute()) {
+      $error .= 'execute() failed ' . $mysqli->error . '<br />';
+    }
+    // Daten auslesen
+    $result = $stmt->get_result();
+
+    // Die Daten in ein Array speichern
+    $data = array();
+    while($row = $result->fetch_assoc()){
+      $gewichtausgelesen = $row['Gewicht'];
+      $datumausgelesen = $row['Datum'];
+      $data[] = array('Datum' => $datumausgelesen, 'Gewicht' => (float) $gewichtausgelesen);
+
+      echo "<ul class='gewicht-liste'>";
+      echo "<li>Gewicht: " . $gewichtausgelesen  . ", Datum: " . $datumausgelesen . "</li>";
+      echo "</ul>";
+    }
+
+    // Daten in das JSON-Format konvertieren
+    $json_data = json_encode($data);
+  
+    $result->free();
+}
+
+?>
+
+<!-- Erstellen des Liniendiagramms mit Google Charts -->
+<div id="chart_div"></div>
+<script>
+// Laden der Charts API
+google.charts.load('current', {'packages':['corechart']});
+
+// Erstellen der Callback-Funktion
+google.charts.setOnLoadCallback(drawChart);
+
+// Erstellen des Diagramms
+function drawChart() {
+  // Daten in das JSON-Format konvertieren
+  var jsonData = <?php echo $json_data; ?>;
+  
+  // Erstellen eines neuen DataTable-Objekts
+  var data = new google.visualization.DataTable();
+  data.addColumn('date', 'Datum');
+  data.addColumn('number', 'Gewicht');
+
+  // Daten hinzufügen
+  for (var i = 0; i < jsonData.length; i++) {
+    var date = new Date(jsonData[i].Datum);
+    data.addRow([date, jsonData[i].Gewicht]);
+  }
+
+  // Erstellen des Liniendiagramms
+  var options = {
+    title: 'Gewicht über die Zeit',
+    curveType: 'function',
+    legend: { position: 'bottom' }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+}
+</script>
+
+
+
+
+
 
 
 

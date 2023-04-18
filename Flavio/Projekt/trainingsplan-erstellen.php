@@ -40,7 +40,7 @@ if (empty($error)) {
   $result = $stmt->get_result();
 
   while($row = $result->fetch_assoc()){
-
+    $idBenutzer = $row['idBenutzer'];
     $vorname = $row['Vorname'];
     $nachname = $row['Name'];
     $email = $row['email'];
@@ -115,6 +115,7 @@ if (empty($error)) {
 
     
     $query = "Insert into uebungen (Uebungname, Zielmuskel) values (?,?)";
+    
     
     // Query vorbereiten
     $stmt = $mysqli->prepare($query);
