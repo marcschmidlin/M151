@@ -74,7 +74,7 @@ if (empty($error)) {
       $result = $stmt->get_result();
       while ($row = $result->fetch_assoc()) {
         // Datenverarbeitung hier
-        $uebungsname = $row['Uebungsname'];
+        $uebungname = $row['Uebungname'];
         $zielmuskel1 = $row['Zielmuskel'];
 
         echo $zielmuskel;
@@ -84,24 +84,38 @@ if (empty($error)) {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
   
+    // Statement schließen
+    $stmt->close();
+  }
+
+
+
+
+
+
+  // Abfrage ausführen, wenn keine Fehler vorhanden sind
+if (empty($error)) {
+    // Query vorbereiten
+    $query = "SELECT * FROM vorgabeuebungen";
+    $stmt = $mysqli->prepare($query);
+    if (!$stmt) {
+      $error .= "Query-Vorbereitung fehlgeschlagen: (" . $mysqli->errno . ") " . $mysqli->error;
+    }
+  
+    // Query ausführen und Daten auslesen
+    if (!$stmt->execute()) {
+      $error .= "Query-Ausführung fehlgeschlagen: (" . $stmt->errno . ") " . $stmt->error;
+    } else {
+      $result = $stmt->get_result();
+      while ($row = $result->fetch_assoc()) {
+        // Datenverarbeitung hier
+        $uebungsname = $row['Uebungname'];
+        $zielmuskel = $row['Zielmuskel'];
+      }
+      $result->free();
+    }
+
     // Statement schließen
     $stmt->close();
   }
@@ -379,6 +393,12 @@ if (empty($error)) {
   </div>
 
 
+  
+ 
+</select>
+
+
+
 
     </section>
 
@@ -394,6 +414,7 @@ if (empty($error)) {
           <option value="Bankdrücken">Bankdrücken</option>
           <option value="Kniebeugen">Kniebeugen</option>
           <option value="Klimmzüge">Klimmzüge</option>
+          
         </select>
         <label for="zielmuskel">Zielmuskel:</label>
         <select id="zielmuskel" name="zielmuskel[]">
