@@ -74,12 +74,33 @@ if (empty($error)) {
       $result = $stmt->get_result();
       while ($row = $result->fetch_assoc()) {
         // Datenverarbeitung hier
+        $uebungsname = $row['Uebungsname'];
+        $zielmuskel1 = $row['Zielmuskel'];
 
-        
+        echo $zielmuskel;
+        echo $uebungname;
       }
       $result->free();
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   
     // Statement schließen
     $stmt->close();
@@ -344,6 +365,9 @@ if (empty($error)) {
 
 
 
+
+
+
       
      
 
@@ -355,6 +379,72 @@ if (empty($error)) {
   </div>
 
 
+
+    </section>
+
+    <section>
+    <form method="POST" action="speichern.php">
+    <label for="name">Name des Trainingsplans:</label>
+    <input type="text" id="name" name="name"><br>
+    <div id="uebungen">
+      <div class="uebung">
+        <label for="uebung">Übung:</label>
+        <select id="uebung" name="uebung[]">
+          <option value="">Bitte wählen</option>
+          <option value="Bankdrücken">Bankdrücken</option>
+          <option value="Kniebeugen">Kniebeugen</option>
+          <option value="Klimmzüge">Klimmzüge</option>
+        </select>
+        <label for="zielmuskel">Zielmuskel:</label>
+        <select id="zielmuskel" name="zielmuskel[]">
+          <option value="">Bitte wählen</option>
+          <option value="Brust">Brust</option>
+          <option value="Beine">Beine</option>
+          <option value="Rücken">Rücken</option>
+        </select>
+        <label for="gewicht">Gewicht:</label>
+        <input type="number" id="gewicht" name="gewicht[]">
+      </div>
+    </div>
+    <button type="button" id="add_uebung">Übung hinzufügen</button>
+    <button type="submit">Speichern</button>
+  </form>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const add_uebung_button = document.querySelector("#add_uebung");
+      const uebungen_div = document.querySelector("#uebungen");
+      
+      add_uebung_button.addEventListener("click", function() {
+        const neue_uebung = document.createElement("div");
+        neue_uebung.className = "uebung";
+        neue_uebung.innerHTML = `
+          <label for="uebung">Übung:</label>
+          <select id="uebung" name="uebung[]">
+            <option value="">Bitte wählen</option>
+            <option value="Bankdrücken">Bankdrücken</option>
+            <option value="Kniebeugen">Kniebeugen</option>
+            <option value="Klimmzüge">Klimmzüge</option>
+          </select>
+          <label for="zielmuskel">Zielmuskel:</label>
+          <select id="zielmuskel" name="zielmuskel[]">
+            <option value="">Bitte wählen</option>
+            <option value="Brust">Brust</option>
+            <option value="Beine">Beine</option>
+            <option value="Rücken">Rücken</option>
+          </select>
+          <label for="gewicht">Gewicht:</label>
+          <input type="number" id="gewicht" name="gewicht[]">
+          <button type="button" class="add_uebung">+</button>
+        `;
+        uebungen_div.appendChild(neue_uebung);
+        neue_uebung.querySelector(".add_uebung").addEventListener("click", function() {
+          uebungen_div.removeChild(neue_uebung);
+        });
+      });
+    });
+  </script>
+ 
 
     </section>
     <!-- End Breadcrumbs -->

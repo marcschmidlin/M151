@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Trainingplan` (
   `Satzanzahl` INT NULL,
   `Gewicht` INT NULL,
   PRIMARY KEY (`idTrainingplan`),
-  INDEX `fk_Trainingplan_Benutzer_idx` (`Benutzer_idBenutzer` ASC) ,
+  INDEX `fk_Trainingplan_Benutzer_idx` (`Benutzer_idBenutzer` ASC),
   CONSTRAINT `fk_Trainingplan_Benutzer`
     FOREIGN KEY (`Benutzer_idBenutzer`)
     REFERENCES `Trainingsplan`.`Benutzer` (`idBenutzer`)
@@ -51,30 +51,15 @@ ENGINE = InnoDB;
 -- Table `Trainingsplan`.`Uebungen`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Uebungen` (
-  `idUebungen` INT NOT NULL,
+  `idUebungen` INT NOT NULL AUTO_INCREMENT,
   `Uebungname` VARCHAR(100) NULL,
   `Zielmuskel` VARCHAR(45) NULL,
   `Beschreibung` MEDIUMTEXT NULL,
   `UebungGif` VARCHAR(255) NULL,
-  PRIMARY KEY (`idUebungen`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `Trainingsplan`.`Trainingsplan_hat_Uebungen`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Trainingsplan_hat_Uebungen` (
-  `Uebungen_idUebungen` INT NOT NULL,
   `Trainingplan_idTrainingplan` INT NOT NULL,
-  PRIMARY KEY (`Uebungen_idUebungen`, `Trainingplan_idTrainingplan`),
-  INDEX `fk_Uebungen_has_Trainingplan_Trainingplan1_idx` (`Trainingplan_idTrainingplan` ASC) ,
-  INDEX `fk_Uebungen_has_Trainingplan_Uebungen1_idx` (`Uebungen_idUebungen` ASC) ,
-  CONSTRAINT `fk_Uebungen_has_Trainingplan_Uebungen1`
-    FOREIGN KEY (`Uebungen_idUebungen`)
-    REFERENCES `Trainingsplan`.`Uebungen` (`idUebungen`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Uebungen_has_Trainingplan_Trainingplan1`
+  PRIMARY KEY (`idUebungen`),
+  INDEX `fk_Uebungen_Trainingplan1_idx` (`Trainingplan_idTrainingplan` ASC),
+  CONSTRAINT `fk_Uebungen_Trainingplan1`
     FOREIGN KEY (`Trainingplan_idTrainingplan`)
     REFERENCES `Trainingsplan`.`Trainingplan` (`idTrainingplan`)
     ON DELETE NO ACTION
@@ -97,6 +82,16 @@ CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Gewicht` (
     REFERENCES `Trainingsplan`.`Benutzer` (`idBenutzer`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Trainingsplan`.`VorgabeUebungen`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Trainingsplan`.`VorgabeUebungen` (
+  `idVorgabeUebungen` INT NOT NULL AUTO_INCREMENT,
+  `Uebungname` VARCHAR(45) NULL,
+  `Zielmuskel` VARCHAR(45) NULL,
+  PRIMARY KEY (`idVorgabeUebungen`))
 ENGINE = InnoDB;
 
 
