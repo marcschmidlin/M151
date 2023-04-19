@@ -392,18 +392,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           Willkommen Zurück <?php echo $vorname?>
 </h2>
       </div>
-    </section>
-    
-   
+      </section>
+    <section>
 
-
-    <form action="" method="post">
-
-    <label for="trainingplanname">Trainingsplan Name:</label>
-    
-	<input type="text" id="trainingplanname" name="trainingplanname"><br><br>
-	
 		<div id="form">
+        <form action="" method="post">
+
+<label for="trainingplanname">Trainingsplan Name:</label>
+
+<input type="text" id="trainingplanname" name="trainingplanname"><br><br>
 			<h2>Übung hinzufügen</h2>
 			<form>
 				<!-- Übungsname -->
