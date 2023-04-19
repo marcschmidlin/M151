@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <input type="email" name="email" class="form-control" id="email" value="<?php echo $email ?>" placeholder="Geben Sie Ihre Email-Adresse an." maxlength="100" required="true">
       </div>
       <!-- benutzername -->
-      
+  
       <!-- password -->
       <div class="form-group">
         <label for="password">Password *</label>
