@@ -68,7 +68,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $error .= "Geben Sie bitte ein Password ein.<br />";
   }
 
+  if (empty($error)) {
+	
+    // Query erstellen
+    $query1 = "Select from benutzer (Name, Vorname, email, Passwort) values (?,?,?,?)";
+    
+    // Query vorbereiten
+    $stmt = $mysqli->prepare($query1);
+    if ($stmt === false) {
+      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+    }
+    
+    // Parameter an Query binden
+    if (!$stmt1->bind_param('s',$email)) {
+      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+    }
+  
 
+    // Query ausführen
+    if (!$stmt1->execute()) {
+      $error .= 'execute() failed ' . $mysqli->error . '<br />';
+    }
+  }
+  if ($query1 == $email){
+    $error .= "Email schon vorhanden<br />";
+  }
+  else{
   // wenn kein Fehler vorhanden ist, schreiben der Daten in die Datenbank
   if (empty($error)) {
 	
@@ -108,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
   }
 }
-
+}
 ?>
 
 
