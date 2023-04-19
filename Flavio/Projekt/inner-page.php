@@ -9,6 +9,11 @@ $error = $message = '';
 
 if(!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']){
 	header("Location: login/signin.php");
+}else{
+  // Session nicht OK,  Weiterleitung auf Anmeldung
+  //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
+  $email=  $_SESSION['email'] ;
+$message .= "Hallo $email"  ;
 }
 
 
