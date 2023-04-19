@@ -118,7 +118,7 @@ $result->free();
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="./account.php" class="get-started-btn scrollto">Logged In <?php echo $vorname?></a>
+      <a href="#about" class="get-started-btn scrollto">Logged In <?php echo $vorname?></a>
 
     </div>
   </header><!-- End Header -->
@@ -130,10 +130,11 @@ $result->free();
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Übersicht</h2>
+          <h2>Account</h2>
           <ol>
             <li><a href="./index.php">Home</a></li>
-            <li>Übersicht</li>
+            <li><a href="./inner-page.php">Übersicht</a></li>
+            <li>Account</li>
           </ol>
         </div>
 
@@ -143,7 +144,7 @@ $result->free();
     <section class="inner-page">
       <div class="container">
         <h2>
-          Willkommen Zurück <?php echo $vorname?>
+          Dein Account <?php echo $vorname?>
 </h2>
       </div>
     </section>
@@ -163,8 +164,8 @@ $result->free();
           <a href="./index.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="./index.php">Deine Trainingspläne</a></h4>
-              <p>Verwende einer deiner erstellten Trainingspläne</p>
+              <h4><a href="./logout.php">Nicht <?php echo $vorname?> ?</a></h4>
+              <p>Hier Ausloggen</p>
             </div>
             </a>
           </div>
@@ -174,8 +175,8 @@ $result->free();
           <a href="./trainingsplan-erstellen.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="./trainingsplan-erstellen.php">Trainingsplan erstellen</a></h4>
-              <p>Erstelle dir einen neuen Trainingsplan oder füge einen aus der Gallerie hinzu.</p>
+              <h4><a href="./trainingsplan-erstellen.php">Passwort ändern</a></h4>
+              <p>Ändere hier dein Passwort</p>
             </div>
             </a>
           </div>
@@ -185,8 +186,8 @@ $result->free();
           <a href="./gewicht.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="./gewicht.php">Gewicht</a></h4>
-              <p>Trage dein Gewicht ein um dein Tracking aufrecht zu erhalten.</p>
+              <h4><a href="./gewicht.php">Account Details bearbeiten</a></h4>
+              <p>Ändere hier deine E-Mail oder deinen Usernamen</p>
             </div>
           </div>
 </a>
