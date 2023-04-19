@@ -329,6 +329,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+
+
+<body>
+
 <style>
 		/* Stil für das Pop-up */
 		#popup {
@@ -352,8 +356,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			width: 80%;
 		}
 	</style>
-
-<body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
