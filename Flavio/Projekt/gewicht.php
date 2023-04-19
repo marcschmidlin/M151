@@ -159,6 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -185,6 +186,28 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+        ul.gewicht-liste {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        ul.gewicht-liste li {
+          padding: 10px;
+          border: 1px solid #ccc;
+          margin-bottom: 10px;
+          background-color: #f7f7f7;
+          color: #333;
+          font-size: 16px;
+          font-family: Arial, sans-serif;
+        }
+
+        ul.gewicht-liste li:hover {
+          background-color: #eaeaea;
+        }
+      </style>
 
   <!-- =======================================================
   * Template Name: Gp
@@ -251,7 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-    <form  method="post">
+    <form method="post">
 
       <h2>Gewicht hinzufügen</h2>
 
@@ -260,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
       <div class="form-group">
         <label for="datumgewicht">Datum:</label>
-        <input type="date" id="datumgewicht" name="datumgewicht"  required>
+        <input type="date" id="datumgewicht" name="datumgewicht" required>
       </div>
 
       <!-- Gewicht -->
@@ -275,35 +298,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
     </form>
-    </div>
 
     <h2>Eingetragene Gewichte</h2>
-    <style>
-      ul.gewicht-liste {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
+  
 
-      ul.gewicht-liste li {
-        padding: 10px;
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-        background-color: #f7f7f7;
-        color: #333;
-        font-size: 16px;
-        font-family: Arial, sans-serif;
-      }
-
-      ul.gewicht-liste li:hover {
-        background-color: #eaeaea;
-      }
-    </style>
-
+ 
 
 
     <!-- Zuerst benötigen wir die Google Charts API -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 
     <?php
     // Erstellen der Abfrage und Ausführen, um die Daten aus der Datenbank zu erhalten
