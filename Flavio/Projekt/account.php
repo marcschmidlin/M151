@@ -160,7 +160,7 @@ $result->free();
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <a href="./index.php">
+          <a href="./logout.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="./logout.php">Nicht <?php echo $vorname?> ?</a></h4>
@@ -171,7 +171,7 @@ $result->free();
 
           
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <a href="./trainingsplan-erstellen.php">
+          <a href="login/passwordChange.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
               <h4><a href="login/passwordChange.php">Passwort ändern</a></h4>
@@ -182,10 +182,10 @@ $result->free();
           
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-          <a href="./gewicht.php">
+          <a href="login/UserChange.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="./gewicht.php">Account Details bearbeiten</a></h4>
+              <h4><a href="login/UserChange.php">Account Details bearbeiten</a></h4>
               <p>Ändere hier deine E-Mail oder deinen Usernamen                </p>
             </div>
           </div>

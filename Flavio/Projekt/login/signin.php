@@ -12,6 +12,10 @@ $error = '';
 $message = '';
 $email = $password = '';
 
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
+	header("Location: ../inner-page.php");
+}
+
 
 // Formular wurde gesendet und Besucher ist noch nicht angemeldet.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
