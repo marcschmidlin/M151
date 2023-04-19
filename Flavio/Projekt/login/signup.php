@@ -71,28 +71,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (empty($error)) {
 	
     // Query erstellen
-    $query1 = "SELECT * FROM benutzer WHERE email= ?";
-    
-    // Query vorbereiten
-    $stmt1 = $mysqli->prepare($query1);
-    if ($stmt1 === false) {
-      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
-    }
-    
-    // Parameter an Query binden
-    if (!$stmt1->bind_param('s',$email)) {
-      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
-    }
-  
+$query1 = "SELECT * FROM benutzer WHERE email= ?";
 
-    // Query ausführen
-    if (!$stmt1->execute()) {
-      $error .= 'execute() failed ' . $mysqli->error . '<br />';
-    }
-  }
-  if (mysqli_num_rows($query1) != 0){
-    $error .= "Email schon vorhanden<br />";
-  }
+// Query vorbereiten
+$stmt1 = $mysqli->prepare($query1);
+if ($stmt1 === false) {
+  $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+}
+
+// Parameter an Query binden
+if (!$stmt1->bind_param('s',$email)) {
+  $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+}
+
+
+// Query ausführen und Resultset speichern
+if (!$stmt1->execute()) {
+  $error .= 'execute() failed ' . $mysqli->error . '<br />';
+}
+$result1 = $stmt1->get_result();
+
+// Anzahl der Zeilen im Resultset prüfen
+if (mysqli_num_rows($result1) != 0){
+  $error .= "Email schon vorhanden<br />";
+}
   else{
   // wenn kein Fehler vorhanden ist, schreiben der Daten in die Datenbank
   if (empty($error)) {
@@ -133,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
   }
 }
-}
+  }}
 ?>
 
 

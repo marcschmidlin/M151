@@ -245,9 +245,6 @@ if (empty($error)) {
       echo '<button type="submit" name="deleteTrainingplan">Trainingsplan löschen</button>';
   echo '</form>';
   
-
-
-  
       $result2->free();
   
       echo '</div>';
