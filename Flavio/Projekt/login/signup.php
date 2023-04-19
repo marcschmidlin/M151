@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               </div>
               <!-- Send / Reset -->
               <button type="submit" name="button" value="submit" class="btn btn-info">Anmelden</button>
-              <p class="text-center">Schon ein Account? <a href="signin.html">Sign In</a></p>
+              <p class="text-center">Schon ein Account? <a href="./signin.php">Sign In</a></p>
             </form>
           </div>
           </div>
