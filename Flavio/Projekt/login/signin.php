@@ -117,7 +117,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div class="col-md-12 col-lg-10">
 				<div class="wrap d-md-flex">
 					<div class="img" style="background-image: url(images/bg-1.jpg);">
+
 					</div>
+
 					<div class="login-wrap p-4 p-md-5">
 						<div class="d-flex">
 							<div class="w-100">
@@ -141,15 +143,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
 						}
 						?>
-						<form action="" method="POST">
+						<form method="POST">
 							<div class="form-group">
-								<label for="emaiö">Benutzername *</label>
-								<input type="email" name="email" class="form-control" id="email" value="" placeholder="emailadresse" required="true">
+								<label for="email">Benutzername *</label>
+								<input type="email" name="email" class="form-control" id="email" value="" placeholder="emailadresse" required>
 							</div>
 							<!-- password -->
 							<div class="form-group">
 								<label for="Passwort">Password *</label>
-								<input type="password" name="Passwort" class="form-control" id="Passwort" placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute" pattern="(?=^.{8,}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="mindestens einen Gross-, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen, mindestens 8 Zeichen lang,keine Umlaute." maxlength="255" required="true">
+								<input type="password" name="Passwort" class="form-control" id="Passwort" placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute" pattern="(?=^.{8,}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="mindestens einen Gross-, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen, mindestens 8 Zeichen lang,keine Umlaute." maxlength="255" required>
 							</div>
 							<button type="submit" name="button" value="submit" class="btn btn-info">Senden</button>
 
@@ -170,13 +172,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<a href="#">Forgot Password</a>
 							</div>
 						</div>
-						</form>
+						
 						<p class="text-center">Noch kein Account? <a href="signup.php">Sign Up</a></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
+		
 	</section>
 
 	<script src="js/jquery.min.js"></script>

@@ -164,27 +164,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
 						}
 						?>
-						<form action="" method="POST">
+						<form method="POST">
 							<div class="form-group">
-								<label for="emaiö">Benutzername *</label>
-								<input type="email" name="email" class="form-control" id="email" value="" placeholder="emailadresse" required="true">
+								<label for="email">Benutzername *</label>
+								<input type="email" name="email" class="form-control" id="email" value="" placeholder="emailadresse" required>
 							</div>
 							<!-- password -->
 							<div class="form-group">
 								<label for="Passwort">Password *</label>
-								<input type="password" name="Passwort" class="form-control" id="Passwort" placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute" pattern="(?=^.{8,}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="mindestens einen Gross-, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen, mindestens 8 Zeichen lang,keine Umlaute." maxlength="255" required="true">
+								<input type="password" name="Passwort" class="form-control" id="Passwort" placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute" pattern="(?=^.{8,}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="mindestens einen Gross-, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen, mindestens 8 Zeichen lang,keine Umlaute." maxlength="255" required>
 							</div>
 							<!-- password -->
 							<div class="form-group">
 								<label for="newPasswort">Neues Password *</label>
-								<input type="password" name="newPasswort" class="form-control" id="newPasswort" placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute" pattern="(?=^.{8,}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="mindestens einen Gross-, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen, mindestens 8 Zeichen lang,keine Umlaute." maxlength="255" required="true">
+								<input type="password" name="newPasswort" class="form-control" id="newPasswort" placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute" pattern="(?=^.{8,}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="mindestens einen Gross-, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen, mindestens 8 Zeichen lang,keine Umlaute." maxlength="255" required>
 							</div>
 							<button type="submit" name="button" value="submit" class="btn btn-info">Senden</button>
 						</form>
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 	</section>
 
