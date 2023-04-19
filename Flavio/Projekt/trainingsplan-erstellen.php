@@ -225,7 +225,34 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $error .= "Geben Sie bitte einen Zielmuskel ein.<br />";
   }
 
-    $query = "Insert into uebungen (Uebungname, Zielmuskel, Trainingplan_idTrainingplan) values (?,?,?), (?,?,?)";
+     // Uebungsname ausgefüllt?
+     if (isset($_POST['uebungname3'])) {
+        //trim and sanitize
+        $uebungname3 = htmlspecialchars(trim($_POST['uebungname3']));
+    
+        //mindestens 1 Zeichen und maximal 30 Zeichen lang
+        if (empty($uebungname3) || strlen($uebungname3) > 30) {
+          $error .= "Geben Sie bitte einen korrekten Vornamen ein.<br />";
+        }
+      } else {
+        $error .= "Geben Sie bitte einen Uebungsnamen ein.<br />";
+      }
+    
+    
+      // Zielmuskel ausgefüllt?
+      if (isset($_POST['zielmuskel3'])) {
+        //trim and sanitize
+        $zielmuskel3 = htmlspecialchars(trim($_POST['zielmuskel3']));
+    
+        //mindestens 1 Zeichen und maximal 30 Zeichen lang
+        if (empty($zielmuskel3) || strlen($zielmuskel3) > 30) {
+          $error .= "Geben Sie bitte einen korrekten Zielmuskel ein.<br />";
+        }
+      } else {
+        $error .= "Geben Sie bitte einen Zielmuskel ein.<br />";
+      }
+
+    $query = "Insert into uebungen (Uebungname, Zielmuskel, Trainingplan_idTrainingplan) values (?,?,?), (?,?,?), (?,?,?)";
     
     // Query vorbereiten
     $stmt = $mysqli->prepare($query);
@@ -234,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     
     // Parameter an Query binden
-    if (!$stmt->bind_param('ssssss', $uebungname1, $zielmuskel1, $idTrainingplan, $uebungname2, $zielmuskel2, $idTrainingplan)) {
+    if (!$stmt->bind_param('sssssssss', $uebungname1, $zielmuskel1, $idTrainingplan, $uebungname2, $zielmuskel2, $idTrainingplan, $uebungname3, $zielmuskel3, $idTrainingplan)) {
       $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
     }
 
@@ -389,11 +416,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       <section class="inner-page">
       <div class="container">
         <h2>
-          Willkommen Zurück <?php echo $vorname?>
+          Erstelle einen neuen Trainingsplan für <?php echo $vorname?>
 </h2>
       </div>
-      </section>
-    <section>
+      
+    
 
 		<div id="form">
         <form action="" method="post">
@@ -404,27 +431,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<h2>Übung hinzufügen</h2>
 			<form>
 				<!-- Übungsname -->
-				<div class="form-group">
+				
 					<label for="uebungname">Übungsname:</label>
 					<input type="text" id="uebungname" name="uebungname1" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
-				</div>
-
-                <div class="form-group">
-					<label for="uebungname2">Übungsname:</label>
-					<input type="text" id="uebungname" name="uebungname2" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
-				</div>
-                
+				
 
 				<!-- Zielmuskel -->
-				<div class="form-group">
+				
 					<label for="zielmuskel">Zielmuskel:</label>
-					<input type="text" id="zielmuskel" name="zielmuskel1" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required>
-				</div>
+					<input type="text" id="zielmuskel" name="zielmuskel1" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
 
-                <div class="form-group">
+
+                    <label for="uebungname2">Übungsname:</label>
+					<input type="text" id="uebungname" name="uebungname2" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+
 					<label for="zielmuskel2">Zielmuskel:</label>
-					<input type="text" id="zielmuskel2" name="zielmuskel2" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required>
-				</div>
+					<input type="text" id="zielmuskel2" name="zielmuskel2" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
+
+                    <label for="uebungname2">Übungsname:</label>
+					<input type="text" id="uebungname" name="uebungname3" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+
+					<label for="zielmuskel2">Zielmuskel:</label>
+					<input type="text" id="zielmuskel2" name="zielmuskel3" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
+				
 
 				
 
@@ -434,88 +463,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		</div>
 	</div>
 
-    
-	
-      <!-- Send / Reset -->
-      <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
-    </form>
-  </div>
-
-
-</select>
-    </section>
-
-    <section>
-    <form method="POST" action="">
-    <label for="name">Name des Trainingsplans:</label>
-    <input type="text" id="name" name="name"><br>
-    <div id="uebungen">
-      <div class="uebung1">
-        <label for="uebung1">Übung:</label>
-        <select id="uebung1" name="uebung1[]">
-          <option value="">Bitte wählen</option>
-          <option value="Bankdrücken">Bankdrücken</option>
-          <option value="Kniebeugen">Kniebeugen</option>
-          <option value="Klimmzüge">Klimmzüge</option>
-          <option value="Seitheben">Seitheben</option>
-          <option value="Schulterdrücken">Schuterdrücken</option>
-          <option value="Schulterdrücken">Schulterdrücken</option>
-          
-        </select>
-        <label for="zielmuskel1">Zielmuskel:</label>
-        <select id="zielmuskel1" name="zielmuskel1[]">
-          <option value="">Bitte wählen</option>
-          <option value="Brust">Brust</option>
-          <option value="Beine">Beine</option>
-          <option value="Rücken">Rücken</option>
-          <option value="Rücken">Schulter</option>
-        </select>
-        <label for="gewicht">Gewicht:</label>
-        <input type="number" id="gewicht" name="gewicht[]">
-      </div>
-    </div>
-    <button type="button" id="add_uebung">Übung hinzufügen</button>
-    <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
-  </form>
-  
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const add_uebung_button = document.querySelector("#add_uebung");
-      const uebungen_div = document.querySelector("#uebungen");
-      const index = 0;
-      add_uebung_button.addEventListener("click", function() {
-        index += 1;
-        const neue_uebung = document.createElement("div");
-        neue_uebung.className = "uebung";
-        neue_uebung.innerHTML = `
-          <label for="uebung">Übung:</label>
-          <select id="uebung` + index +` " name="uebung[]">
-            <option value="">Bitte wählen</option>
-            <option value="Bankdrücken">Bankdrücken</option>
-            <option value="Kniebeugen">Kniebeugen</option>
-            <option value="Klimmzüge">Klimmzüge</option>
-            <option value="Seitheben">Seitheben</option>
-          <option value="Schulterdrücken">Schuterdrücken</option>
-          <option value="Schulterdrücken">Schulterdrücken</option>
-          </select>
-          <label for="zielmuskel">Zielmuskel:</label>
-          <select id="zielmuskel" name="zielmuskel[]">
-            <option value="">Bitte wählen</option>
-            <option value="Brust">Brust</option>
-            <option value="Beine">Beine</option>
-            <option value="Rücken">Rücken</option>
-          </select>
-          <label for="gewicht">Gewicht:</label>
-          <input type="number" id="gewicht" name="gewicht[]">
-          <button type="button" class="add_uebung">+</button>
-        `;
-        uebungen_div.appendChild(neue_uebung);
-        neue_uebung.querySelector(".add_uebung").addEventListener("click", function() {
-          uebungen_div.removeChild(neue_uebung);
-        });
-      });
-    });
-  </script>
  
 
     </section>

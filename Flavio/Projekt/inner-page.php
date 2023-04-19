@@ -160,10 +160,10 @@ $result->free();
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <a href="./index.php">
+          <a href="./trainingsplan.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="./index.php">Deine Trainingspläne</a></h4>
+              <h4><a href="./trainingsplan.php">Deine Trainingspläne</a></h4>
               <p>Verwende einer deiner erstellten Trainingspläne</p>
             </div>
             </a>
