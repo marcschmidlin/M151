@@ -9,14 +9,10 @@ $error = $message = '';
 $gewicht = $datumgewicht =  '';
 if(!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']){
 	header("Location: login/signin.php");
-}
-if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
-    // TODO - wenn keine Personalisierte Session
-    $error .= "Sie sind nicht angemeldet, melden Sie sich bitte auf der  <a href='login.php'>Login-Seite</a> an.";
 }else{
-    // Session nicht OK,  Weiterleitung auf Anmeldung
-    //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
-    $email=  $_SESSION['email'] ;
+  // Session nicht OK,  Weiterleitung auf Anmeldung
+  //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
+  $email=  $_SESSION['email'] ;
 $message .= "Hallo $email"  ;
 }
 
