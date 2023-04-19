@@ -7,20 +7,20 @@ session_start();
 // variablen initialisieren
 $error = $message = '';
 
-if(!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']){
-	header("Location: login/signin.php");
-}else{
+if (!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']) {
+  header("Location: login/signin.php");
+} else {
   // Session nicht OK,  Weiterleitung auf Anmeldung
   //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
-  $email=  $_SESSION['email'] ;
-$message .= "Hallo $email"  ;
+  $email =  $_SESSION['email'];
+  $message .= "Hallo $email";
 }
 
 
 if (empty($error)) {
   // Query erstellen
   $query = "SELECT * from benutzer where email =?";
-  
+
   // Query vorbereiten
   $stmt = $mysqli->prepare($query);
   if ($stmt === false) {
@@ -37,18 +37,16 @@ if (empty($error)) {
   // Daten auslesen
   $result = $stmt->get_result();
 
-  while($row = $result->fetch_assoc()){
+  while ($row = $result->fetch_assoc()) {
 
     $vorname = $row['Vorname'];
     $nachname = $row['Name'];
     $email = $row['email'];
     $alter = $row['Alter'];
-    $idBenutzer =$row['idBenutzer'];
-}
+    $idBenutzer = $row['idBenutzer'];
+  }
 
-$result->free();
-
-  
+  $result->free();
 }
 
 ?>
@@ -71,7 +69,7 @@ $result->free();
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CRaleway:300,300i,400,400i,500,500i,600,600i,700,700i%7CPoppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -109,10 +107,11 @@ $result->free();
           <li><a class="nav-link scrollto " href="./index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
+        </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="./account.php" class="get-started-btn scrollto">Logged In <?php echo $vorname?></a>
+      <a href="./account.php" class="get-started-btn scrollto">Logged In <?php echo $vorname ?></a>
 
     </div>
   </header><!-- End Header -->
@@ -135,134 +134,134 @@ $result->free();
       </div>
     </section><!-- End Breadcrumbs -->
 
- 
+
     <section>
 
-    <h2>Deine Trainingspläne</h2>
+      <h2>Deine Trainingspläne</h2>
 
 
-    <?php
+      <?php
 
-if (isset($_POST['deleteTrainingplan'])) {
-    $idTrainingplan = $_POST['idTrainingplan'];
+      if (isset($_POST['deleteTrainingplan'])) {
+        $idTrainingplan = $_POST['idTrainingplan'];
 
-    // Query erstellen
-    $query = "DELETE FROM uebungen WHERE Trainingplan_idTrainingplan=?";
-    // Query vorbereiten
-    $stmt = $mysqli->prepare($query);
-    if ($stmt === false) {
-        $error .= 'prepare() failed ' . $mysqli->error . '<br />';
-    }
-    // Parameter an Query binden
-    if (!$stmt->bind_param("i", $idTrainingplan)) {
-        $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
-    }
-    // Query ausführen
-    if (!$stmt->execute()) {
-        $error .= 'execute() failed ' . $mysqli->error . '<br />';
-    }
+        // Query erstellen
+        $query = "DELETE FROM uebungen WHERE Trainingplan_idTrainingplan=?";
+        // Query vorbereiten
+        $stmt = $mysqli->prepare($query);
+        if ($stmt === false) {
+          $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+        }
+        // Parameter an Query binden
+        if (!$stmt->bind_param("i", $idTrainingplan)) {
+          $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+        }
+        // Query ausführen
+        if (!$stmt->execute()) {
+          $error .= 'execute() failed ' . $mysqli->error . '<br />';
+        }
 
-    // Query erstellen
-    $query = "DELETE FROM Trainingplan WHERE idTrainingplan=?";
-    // Query vorbereiten
-    $stmt = $mysqli->prepare($query);
-    if ($stmt === false) {
-        $error .= 'prepare() failed ' . $mysqli->error . '<br />';
-    }
-    // Parameter an Query binden
-    if (!$stmt->bind_param("i", $idTrainingplan)) {
-        $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
-    }
-    // Query ausführen
-    if (!$stmt->execute()) {
-        $error .= 'execute() failed ' . $mysqli->error . '<br />';
-    }
-}
-
-
-
-
-if (empty($error)) {
-    // Query erstellen
-    $query = "SELECT * from Trainingplan where Benutzer_idBenutzer =?";
-  
-    // Query vorbereiten
-    $stmt = $mysqli->prepare($query);
-    if ($stmt === false) {
-      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
-    }
-    // Parameter an Query binden
-    if (!$stmt->bind_param("s", $idBenutzer)) {
-      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
-    }
-    // Query ausführen
-    if (!$stmt->execute()) {
-      $error .= 'execute() failed ' . $mysqli->error . '<br />';
-    }
-    // Daten auslesen
-    $result = $stmt->get_result();
-  
-    while ($row = $result->fetch_assoc()) {
-      $idTrainingplan = $row['idTrainingplan'];
-      $nametraingplan = $row['Traingplanname'];
-
-  
-      echo '<div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">';
-      echo '<h3>' . $nametraingplan . '</h3>';
-
-      
-  
-      // Query erstellen
-      $query2 = "SELECT * from uebungen where Trainingplan_idTrainingplan =?";
-  
-      // Query vorbereiten
-      $stmt2 = $mysqli->prepare($query2);
-      if ($stmt2 === false) {
-        $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+        // Query erstellen
+        $query = "DELETE FROM Trainingplan WHERE idTrainingplan=?";
+        // Query vorbereiten
+        $stmt = $mysqli->prepare($query);
+        if ($stmt === false) {
+          $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+        }
+        // Parameter an Query binden
+        if (!$stmt->bind_param("i", $idTrainingplan)) {
+          $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+        }
+        // Query ausführen
+        if (!$stmt->execute()) {
+          $error .= 'execute() failed ' . $mysqli->error . '<br />';
+        }
       }
-      // Parameter an Query binden
-      if (!$stmt2->bind_param("s", $idTrainingplan)) {
-        $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+
+
+
+
+      if (empty($error)) {
+        // Query erstellen
+        $query = "SELECT * from Trainingplan where Benutzer_idBenutzer =?";
+
+        // Query vorbereiten
+        $stmt = $mysqli->prepare($query);
+        if ($stmt === false) {
+          $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+        }
+        // Parameter an Query binden
+        if (!$stmt->bind_param("s", $idBenutzer)) {
+          $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+        }
+        // Query ausführen
+        if (!$stmt->execute()) {
+          $error .= 'execute() failed ' . $mysqli->error . '<br />';
+        }
+        // Daten auslesen
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+          $idTrainingplan = $row['idTrainingplan'];
+          $nametraingplan = $row['Traingplanname'];
+
+
+          echo '<div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">';
+          echo '<h3>' . $nametraingplan . '</h3>';
+
+
+
+          // Query erstellen
+          $query2 = "SELECT * from uebungen where Trainingplan_idTrainingplan =?";
+
+          // Query vorbereiten
+          $stmt2 = $mysqli->prepare($query2);
+          if ($stmt2 === false) {
+            $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+          }
+          // Parameter an Query binden
+          if (!$stmt2->bind_param("s", $idTrainingplan)) {
+            $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+          }
+          // Query ausführen
+          if (!$stmt2->execute()) {
+            $error .= 'execute() failed ' . $mysqli->error . '<br />';
+          }
+          // Daten auslesen
+          $result2 = $stmt2->get_result();
+
+          echo '<ul>';
+          while ($row2 = $result2->fetch_assoc()) {
+            $uebung = $row2['Uebungname'];
+            echo '<li>' . $uebung . '</li>';
+          }
+          echo '</ul>';
+
+          // Button zum Löschen des Trainingsplans hinzufügen
+
+          echo '<form method="POST" action="">';
+          echo '<input type="hidden" name="idTrainingplan" value="' . $idTrainingplan . '">';
+
+          echo '<button type="submit" name="deleteTrainingplan">Trainingsplan löschen</button>';
+          echo '</form>';
+
+          $result2->free();
+
+          echo '</div>';
+        }
+
+        $result->free();
       }
-      // Query ausführen
-      if (!$stmt2->execute()) {
-        $error .= 'execute() failed ' . $mysqli->error . '<br />';
-      }
-      // Daten auslesen
-      $result2 = $stmt2->get_result();
-  
-      echo '<ul>';
-      while ($row2 = $result2->fetch_assoc()) {
-        $uebung = $row2['Uebungname'];
-        echo '<li>' . $uebung . '</li>';
-      }
-      echo '</ul>';
-
-      // Button zum Löschen des Trainingsplans hinzufügen
-
-      echo '<form method="POST" action="">';
-      echo '<input type="hidden" name="idTrainingplan" value="' . $idTrainingplan . '">';
-
-      echo '<button type="submit" name="deleteTrainingplan">Trainingsplan löschen</button>';
-  echo '</form>';
-  
-      $result2->free();
-  
-      echo '</div>';
-    }
-  
-    $result->free();
-  }
-
-  
 
 
 
-     ?>
 
-    
 
-   
+      ?>
+
+
+
+
 
 
 
