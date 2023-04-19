@@ -422,7 +422,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       
     
 
-		<div id="form">
+		
         <form action="" method="post">
 
 <label for="trainingplanname">Trainingsplan Name:</label>
@@ -458,15 +458,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				
 
                 <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
-          
+                
+
+                <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <a href="./trainingsplan.php">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4><a href="./trainingsplan.php">Öffne deine Trainingspläne</a></h4>
+              <p>Verwende einer deiner erstellten Trainingspläne</p>
+            </div>
+            </a>
+          </div>
+
+</a>
+        </div>
+
 			</form>
-		</div>
-	</div>
+
 
  
 
     </section>
-    <!-- End Breadcrumbs -->
 
 
 
