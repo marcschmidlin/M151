@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $error .= 'execute() failed ' . $mysqli->error . '<br />';
     }
   }
-  if (mysqli_num_rows($result) != 0){
+  if (mysqli_num_rows($query1) != 0){
     $error .= "Email schon vorhanden<br />";
   }
   else{
