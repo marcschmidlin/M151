@@ -72,7 +72,7 @@ if (empty($error)) {
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CRaleway:300,300i,400,400i,500,500i,600,600i,700,700i%7CPoppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -110,7 +110,7 @@ if (empty($error)) {
           <li><a class="nav-link scrollto " href="./index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <i class="bi bi-list mobile-nav-toggle"></i>
+          </ul><i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
       <a href="./account.php" class="get-started-btn scrollto">Logged In <?php echo $vorname ?></a>
@@ -155,36 +155,33 @@ if (empty($error)) {
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <a href="./trainingsplan.php">
+            <a href="./trainingsplan.php"></a>
               <div class="icon-box">
                 <div class="icon"><i class="bx bxl-dribbble"></i></div>
                 <h4><a href="./trainingsplan.php">Deine Trainingspläne</a></h4>
                 <p>Verwende einer deiner erstellten Trainingspläne, die du zuvor erstellt hast.</p>
               </div>
-            </a>
           </div>
 
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <a href="./trainingsplan-erstellen.php">
+            <a href="./trainingsplan-erstellen.php"></a>
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-file"></i></div>
                 <h4><a href="./trainingsplan-erstellen.php">Trainingsplan erstellen</a></h4>
                 <p>Erstelle dir einen neuen Trainingsplan oder füge einen aus der Gallerie hinzu.</p>
               </div>
-            </a>
           </div>
 
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <a href="./gewicht.php">
+            <a href="./gewicht.php"></a>
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-tachometer"></i></div>
                 <h4><a href="./gewicht.php">Gewicht</a></h4>
                 <p>Trage dein Gewicht ein um dein Tracking aufrecht zu erhalten.</p>
               </div>
           </div>
-          </a>
         </div>
 
       </div>

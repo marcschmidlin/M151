@@ -159,12 +159,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <title>Inner Page - Gp Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -174,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CRaleway:300,300i,400,400i,500,500i,600,600i,700,700i%7CPoppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -253,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-    <form action="" method="post">
+    <form  method="post">
 
       <h2>Gewicht hinzufügen</h2>
 
@@ -262,13 +260,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
       <div class="form-group">
         <label for="datumgewicht">Datum:</label>
-        <input type="date" id="datumgewicht" name="datumgewicht" placeholder="Geben Sie din Gewicht an." required>
+        <input type="date" id="datumgewicht" name="datumgewicht"  required>
       </div>
 
       <!-- Gewicht -->
       <div class="form-group">
         <label for="gewicht">Gewicht:</label>
-        <input type="number" id="gewicht" name="gewicht" placeholder="Geben Sie das Gewicht an." maxlength="10">
+        <input type="number" id="gewicht" name="gewicht" placeholder="Geben Sie das Gewicht an.">
       </div>
 
       <button type="submit" name="button" value="submit" class="btn btn-info">Gewicht Speichern</button>
@@ -396,8 +394,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-
-    </section>
 
 
 
