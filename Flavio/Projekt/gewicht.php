@@ -7,7 +7,9 @@ session_start();
 // variablen initialisieren
 $error = $message = '';
 $gewicht = $datumgewicht =  '';
-
+if(!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']){
+	header("Location: login/signin.php");
+}
 if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
     // TODO - wenn keine Personalisierte Session
     $error .= "Sie sind nicht angemeldet, melden Sie sich bitte auf der  <a href='login.php'>Login-Seite</a> an.";
