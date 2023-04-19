@@ -1,4 +1,6 @@
 <?php
+
+$id=1;
 // Datenbankverbindung
 include('./database/db_connector.inc.php');
 
@@ -46,16 +48,10 @@ if (empty($error)) {
     $email = $row['email'];
     $alter = $row['Alter'];
     $gewicht = $row['Gewicht'];
-
-
 }
 
 $result->free();
-
-  
 }
-
-
 
 
 // Abfrage ausführen, wenn keine Fehler vorhanden sind
@@ -77,14 +73,10 @@ if (empty($error)) {
         $uebungname = $row['Uebungname'];
         $zielmuskel1 = $row['Zielmuskel'];
 
-        echo $zielmuskel;
-        echo $uebungname;
       }
       $result->free();
     }
 
-
-  
     // Statement schließen
     $stmt->close();
   }
@@ -93,11 +85,62 @@ if (empty($error)) {
 
 
 
+//ID ZU Trainingsplan hinzufügen
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Trainingsplan ausgefüllt?
+  if (isset($_POST['trainingplanname'])) {
+    //trim and sanitize
+    $trainingplanname = htmlspecialchars(trim($_POST['trainingplanname']));
 
-  // Abfrage ausführen, wenn keine Fehler vorhanden sind
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($trainingplanname) || strlen($trainingplanname) > 30) {
+      $error .= "Geben Sie bitte einen korrekten Zielmuskel ein.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte einen Zielmuskel ein.<br />";
+  }
+
+
+
+
+    
+    $query = "Insert into trainingplan (Benutzer_idBenutzer, Traingplanname) values (?,?)";
+    
+    
+    // Query vorbereiten
+    $stmt = $mysqli->prepare($query);
+    if ($stmt === false) {
+      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+    }
+    
+    // Parameter an Query binden
+    if (!$stmt->bind_param('ss', $idBenutzer, $trainingplanname)) {
+      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+    }
+
+    // Query ausführen
+    if (!$stmt->execute()) {
+      $error .= 'execute() failed ' . $mysqli->error . '<br />';
+    }
+
+    // kein Fehler!
+    if (empty($error)) {
+      $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
+      // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
+
+    
+      // Weiterleiten auf login.php
+     
+      // beenden des Scriptes
+      
+    }
+  }
+
+
+// SELECT ID from trainingsplan
 if (empty($error)) {
     // Query vorbereiten
-    $query = "SELECT * FROM vorgabeuebungen";
+    $query = "SELECT * FROM trainingplan";
     $stmt = $mysqli->prepare($query);
     if (!$stmt) {
       $error .= "Query-Vorbereitung fehlgeschlagen: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -110,8 +153,7 @@ if (empty($error)) {
       $result = $stmt->get_result();
       while ($row = $result->fetch_assoc()) {
         // Datenverarbeitung hier
-        $uebungsname = $row['Uebungname'];
-        $zielmuskel = $row['Zielmuskel'];
+        $idTrainingplan = $row['idTrainingplan'];
       }
       $result->free();
     }
@@ -121,36 +163,70 @@ if (empty($error)) {
   }
 
 
+  //Übung 1
+
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Uebungsname ausgefüllt?
-  if (isset($_POST['uebungname'])) {
+  if (isset($_POST['uebungname1'])) {
     //trim and sanitize
-    $uebungname = htmlspecialchars(trim($_POST['uebungname']));
+    $uebungname1 = htmlspecialchars(trim($_POST['uebungname1']));
 
     //mindestens 1 Zeichen und maximal 30 Zeichen lang
-    if (empty($uebungname) || strlen($uebungname) > 30) {
+    if (empty($uebungname1) || strlen($uebungname1) > 30) {
       $error .= "Geben Sie bitte einen korrekten Vornamen ein.<br />";
     }
   } else {
     $error .= "Geben Sie bitte einen Uebungsnamen ein.<br />";
   }
 
+
   // Zielmuskel ausgefüllt?
-  if (isset($_POST['zielmuskel'])) {
+  if (isset($_POST['zielmuskel1'])) {
     //trim and sanitize
-    $zielmuskel = htmlspecialchars(trim($_POST['zielmuskel']));
+    $zielmuskel1 = htmlspecialchars(trim($_POST['zielmuskel1']));
 
     //mindestens 1 Zeichen und maximal 30 Zeichen lang
-    if (empty($zielmuskel) || strlen($zielmuskel) > 30) {
-      $error .= "Geben Sie bitte einen korrekten Nachname ein.<br />";
+    if (empty($zielmuskel1) || strlen($zielmuskel1) > 30) {
+      $error .= "Geben Sie bitte einen korrekten Zielmuskel ein.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte einen Zielmuskel ein.<br />";
+  }
+  
+
+
+
+//Übung zwei
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Uebungsname ausgefüllt?
+  if (isset($_POST['uebungname2'])) {
+    //trim and sanitize
+    $uebungname2 = htmlspecialchars(trim($_POST['uebungname2']));
+
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($uebungname2) || strlen($uebungname2) > 30) {
+      $error .= "Geben Sie bitte einen korrekten Vornamen ein.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte einen Uebungsnamen ein.<br />";
+  }
+
+
+  // Zielmuskel ausgefüllt?
+  if (isset($_POST['zielmuskel2'])) {
+    //trim and sanitize
+    $zielmuskel2 = htmlspecialchars(trim($_POST['zielmuskel2']));
+
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($zielmuskel2) || strlen($zielmuskel2) > 30) {
+      $error .= "Geben Sie bitte einen korrekten Zielmuskel ein.<br />";
     }
   } else {
     $error .= "Geben Sie bitte einen Zielmuskel ein.<br />";
   }
 
-    
-    $query = "Insert into uebungen (Uebungname, Zielmuskel) values (?,?)";
-    
+    $query = "Insert into uebungen (Uebungname, Zielmuskel, Trainingplan_idTrainingplan) values (?,?,?), (?,?,?)";
     
     // Query vorbereiten
     $stmt = $mysqli->prepare($query);
@@ -159,7 +235,7 @@ if (empty($error)) {
     }
     
     // Parameter an Query binden
-    if (!$stmt->bind_param('ss', $uebungname, $zielmuskel)) {
+    if (!$stmt->bind_param('sssssss', $uebungname1, $zielmuskel1, $gewicht1, $idTrainingplan, $uebungname2, $zielmuskel2, $idTrainingplan)) {
       $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
     }
 
@@ -174,16 +250,16 @@ if (empty($error)) {
       // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
 
       // Verbindung schliessen
-      $mysqli->close();
+      
       // Weiterleiten auf login.php
      
       // beenden des Scriptes
       
     }
   }
+}
 
 
-    
 ?>
 
 
@@ -318,134 +394,112 @@ if (empty($error)) {
 </h2>
       </div>
     </section>
+    
+   
 
-    <label for="planname">Trainingsplan Name:</label>
-	<input type="text" id="planname" name="planname"><br><br>
-
-	<button onclick="openPopup()">+</button>
 
     <form action="" method="post">
-	<div id="popup">
+
+    <label for="trainingplanname">Trainingsplan Name:</label>
+    
+	<input type="text" id="trainingplanname" name="trainingplanname"><br><br>
+	
 		<div id="form">
 			<h2>Übung hinzufügen</h2>
 			<form>
 				<!-- Übungsname -->
 				<div class="form-group">
 					<label for="uebungname">Übungsname:</label>
-					<input type="text" id="uebungname" name="uebungname" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+					<input type="text" id="uebungname" name="uebungname1" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
 				</div>
+
+                <div class="form-group">
+					<label for="uebungname2">Übungsname:</label>
+					<input type="text" id="uebungname" name="uebungname2" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+				</div>
+                
 
 				<!-- Zielmuskel -->
 				<div class="form-group">
 					<label for="zielmuskel">Zielmuskel:</label>
-					<input type="text" id="zielmuskel" name="zielmuskel" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required>
+					<input type="text" id="zielmuskel" name="zielmuskel1" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required>
 				</div>
 
-				<!-- Gewicht -->
-				<div class="form-group">
-					<label for="weight">Gewicht:</label>
-					<input type="text" id="weight" name="weight" placeholder="Geben Sie das Gewicht an." maxlength="10">
+                <div class="form-group">
+					<label for="zielmuskel2">Zielmuskel:</label>
+					<input type="text" id="zielmuskel2" name="zielmuskel2" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required>
 				</div>
+
 
                 <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
-                <button type="button" onclick="closePopup()">Abbrechen</button>
+          
 			</form>
 		</div>
 	</div>
 
     
-	<script>
-		// Funktionen für das Pop-up
-		function openPopup() {
-			document.getElementById("popup").style.display = "block";
-		}
-
-		function closePopup() {
-			document.getElementById("popup").style.display = "none";
-		}
-
-		// Funktion zum Hinzufügen der Übung
-		function saveExercise() {
-			var exercise = document.getElementById("exercise").value;
-			var muscle = document.getElementById("muscle").value;
-			var weight = document.getElementById("weight").value;
-
-			// Hier können Sie den Code einfügen, um die Übung zu speichern (z.B. in einer Datenbank oder im Local Storage)
-
-			closePopup(); // Schließen des Pop-ups
-		}
-	</script>
-
-
-
-
-
-
-
-      
-     
-
-
-
+	
       <!-- Send / Reset -->
-      <button type="submit" name="button" value="submit" class="btn btn-info">Trainingsplan Speichern</button>
+      <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
     </form>
   </div>
 
 
-  
- 
 </select>
-
-
-
-
     </section>
 
     <section>
-    <form method="POST" action="speichern.php">
+    <form method="POST" action="">
     <label for="name">Name des Trainingsplans:</label>
     <input type="text" id="name" name="name"><br>
     <div id="uebungen">
-      <div class="uebung">
-        <label for="uebung">Übung:</label>
-        <select id="uebung" name="uebung[]">
+      <div class="uebung1">
+        <label for="uebung1">Übung:</label>
+        <select id="uebung1" name="uebung1[]">
           <option value="">Bitte wählen</option>
           <option value="Bankdrücken">Bankdrücken</option>
           <option value="Kniebeugen">Kniebeugen</option>
           <option value="Klimmzüge">Klimmzüge</option>
+          <option value="Seitheben">Seitheben</option>
+          <option value="Schulterdrücken">Schuterdrücken</option>
+          <option value="Schulterdrücken">Schulterdrücken</option>
           
         </select>
-        <label for="zielmuskel">Zielmuskel:</label>
-        <select id="zielmuskel" name="zielmuskel[]">
+        <label for="zielmuskel1">Zielmuskel:</label>
+        <select id="zielmuskel1" name="zielmuskel1[]">
           <option value="">Bitte wählen</option>
           <option value="Brust">Brust</option>
           <option value="Beine">Beine</option>
           <option value="Rücken">Rücken</option>
+          <option value="Rücken">Schulter</option>
         </select>
         <label for="gewicht">Gewicht:</label>
         <input type="number" id="gewicht" name="gewicht[]">
       </div>
     </div>
     <button type="button" id="add_uebung">Übung hinzufügen</button>
-    <button type="submit">Speichern</button>
+    <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
   </form>
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const add_uebung_button = document.querySelector("#add_uebung");
       const uebungen_div = document.querySelector("#uebungen");
-      
+      const index = 0;
       add_uebung_button.addEventListener("click", function() {
+        index += 1;
         const neue_uebung = document.createElement("div");
         neue_uebung.className = "uebung";
         neue_uebung.innerHTML = `
           <label for="uebung">Übung:</label>
-          <select id="uebung" name="uebung[]">
+          <select id="uebung` + index +` " name="uebung[]">
             <option value="">Bitte wählen</option>
             <option value="Bankdrücken">Bankdrücken</option>
             <option value="Kniebeugen">Kniebeugen</option>
             <option value="Klimmzüge">Klimmzüge</option>
+            <option value="Seitheben">Seitheben</option>
+          <option value="Schulterdrücken">Schuterdrücken</option>
+          <option value="Schulterdrücken">Schulterdrücken</option>
           </select>
           <label for="zielmuskel">Zielmuskel:</label>
           <select id="zielmuskel" name="zielmuskel[]">

@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `Trainingsplan`.`Trainingplan` (
   `Benutzer_idBenutzer` INT NOT NULL,
   `Satzanzahl` INT NULL,
   `Gewicht` INT NULL,
+  `Traingplanname` VARCHAR(45) NULL,
   PRIMARY KEY (`idTrainingplan`),
   INDEX `fk_Trainingplan_Benutzer_idx` (`Benutzer_idBenutzer` ASC),
   CONSTRAINT `fk_Trainingplan_Benutzer`
