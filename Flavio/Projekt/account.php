@@ -163,7 +163,7 @@ $result->free();
           <a href="./logout.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="./logout.php">Nicht <?php echo $vorname?> ?</a></h4>
+              <h4><a href="./logout.php">Willst du gehen <?php echo $vorname?> ?</a></h4>
               <p>Hier Ausloggen                                                         </p>
             </div>
             </a>

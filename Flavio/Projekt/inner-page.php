@@ -164,7 +164,7 @@ $result->free();
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="./trainingsplan.php">Deine Trainingspläne</a></h4>
-              <p>Verwende einer deiner erstellten Trainingspläne</p>
+              <p>Verwende einer deiner erstellten Trainingspläne, die du zuvor erstellt hast.</p>
             </div>
             </a>
           </div>
