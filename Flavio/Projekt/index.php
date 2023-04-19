@@ -126,7 +126,7 @@
             <p class="fst-italic">
               Wir sind ein Unternehmen, das sich darauf konzentriert, Ihnen das bestmögliche Trainingserlebnis zu bieten, indem wir Ihnen personalisierte Trainingspläne, Gesundheitstracking und hochwertiges Personal Training anbieten.
 
-Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Bodybuilder, die ihre Trainingsroutine auf das nächste Level bringen möchten. Wir bieten eine Vielzahl von Funktionen an, um Ihnen dabei zu helfen, Ihre Ziele zu erreichen, einschließlich individueller Trainingspläne, fortschrittlicher Gesundheitstracking-Tools und persönlicher Betreuung durch unsere erfahrenen Trainer.
+              Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Bodybuilder, die ihre Trainingsroutine auf das nächste Level bringen möchten. Wir bieten eine Vielzahl von Funktionen an, um Ihnen dabei zu helfen, Ihre Ziele zu erreichen, einschließlich individueller Trainingspläne, fortschrittlicher Gesundheitstracking-Tools und persönlicher Betreuung durch unsere erfahrenen Trainer.
             </p>
             <ul>
               <li><i class="ri-check-double-line"></i> FM Fitness bietet personalisierte Trainingspläne, Gesundheitstracking und Personal Training an.</li>
@@ -134,7 +134,7 @@ Unsere Webseite ist die perfekte Lösung für alle Fitness-Enthusiasten und Body
               <li><i class="ri-check-double-line"></i> FM Fitness ist bestrebt, Kunden zu motivieren und zu unterstützen, um individuelle Fitnessziele zu erreichen.</li>
             </ul>
             <p>
-              Egal, ob Sie Gewicht verlieren, Muskeln aufbauen oder einfach Ihre Fitness verbessern möchten, bei FM Fitness sind Sie in guten Händen. 
+              Egal, ob Sie Gewicht verlieren, Muskeln aufbauen oder einfach Ihre Fitness verbessern möchten, bei FM Fitness sind Sie in guten Händen.
             </p>
           </div>
         </div>

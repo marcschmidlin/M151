@@ -7,20 +7,20 @@ session_start();
 // variablen initialisieren
 $error = $message = '';
 
-if(!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']){
-	header("Location: login/signin.php");
-}else{
+if (!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']) {
+  header("Location: login/signin.php");
+} else {
   // Session nicht OK,  Weiterleitung auf Anmeldung
   //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
-  $email=  $_SESSION['email'] ;
-$message .= "Hallo $email"  ;
+  $email =  $_SESSION['email'];
+  $message .= "Hallo $email";
 }
 
 
 if (empty($error)) {
   // Query erstellen
   $query = "SELECT * from benutzer where email =?";
-  
+
   // Query vorbereiten
   $stmt = $mysqli->prepare($query);
   if ($stmt === false) {
@@ -37,20 +37,16 @@ if (empty($error)) {
   // Daten auslesen
   $result = $stmt->get_result();
 
-  while($row = $result->fetch_assoc()){
+  while ($row = $result->fetch_assoc()) {
 
     $vorname = $row['Vorname'];
     $nachname = $row['Name'];
     $email = $row['email'];
     $alter = $row['Alter'];
     $gewicht = $row['Gewicht'];
+  }
 
-
-}
-
-$result->free();
-
-  
+  $result->free();
 }
 
 
@@ -114,10 +110,10 @@ $result->free();
           <li><a class="nav-link scrollto " href="./index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+          <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="#about" class="get-started-btn scrollto">Logged In <?php echo $vorname?></a>
+      <a href="#about" class="get-started-btn scrollto">Logged In <?php echo $vorname ?></a>
 
     </div>
   </header><!-- End Header -->
@@ -143,8 +139,8 @@ $result->free();
     <section class="inner-page">
       <div class="container">
         <h2>
-          Dein Account <?php echo $vorname?>
-</h2>
+          Dein Account <?php echo $vorname ?>
+        </h2>
       </div>
     </section>
 
@@ -159,36 +155,36 @@ $result->free();
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <a href="./logout.php">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="./logout.php">Willst du gehen <?php echo $vorname?> ?</a></h4>
-              <p>Hier Ausloggen                                                         </p>
-            </div>
+            <a href="./logout.php">
+              <div class="icon-box">
+                <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                <h4><a href="./logout.php">Willst du gehen <?php echo $vorname ?> ?</a></h4>
+                <p>Hier Ausloggen </p>
+              </div>
             </a>
           </div>
 
-          
+
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <a href="login/passwordChange.php">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="login/passwordChange.php">Passwort ändern</a></h4>
-              <p>Ändere hier dein Passwort                                                  </p>
-            </div>
+            <a href="login/passwordChange.php">
+              <div class="icon-box">
+                <div class="icon"><i class="bx bx-file"></i></div>
+                <h4><a href="login/passwordChange.php">Passwort ändern</a></h4>
+                <p>Ändere hier dein Passwort </p>
+              </div>
             </a>
           </div>
-          
+
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-          <a href="login/UserChange.php">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="login/UserChange.php">Account Details bearbeiten</a></h4>
-              <p>Ändere hier deine E-Mail oder deinen Usernamen                </p>
-            </div>
+            <a href="login/UserChange.php">
+              <div class="icon-box">
+                <div class="icon"><i class="bx bx-tachometer"></i></div>
+                <h4><a href="login/UserChange.php">Account Details bearbeiten</a></h4>
+                <p>Ändere hier deine E-Mail oder deinen Usernamen </p>
+              </div>
           </div>
-</a>
+          </a>
         </div>
 
       </div>

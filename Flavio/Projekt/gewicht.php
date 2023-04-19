@@ -7,20 +7,20 @@ session_start();
 // variablen initialisieren
 $error = $message = '';
 $gewicht = $datumgewicht =  '';
-if(!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']){
-	header("Location: login/signin.php");
-}else{
+if (!isset($_SESSION['loggedin']) && !$_SESSION['loggedin']) {
+  header("Location: login/signin.php");
+} else {
   // Session nicht OK,  Weiterleitung auf Anmeldung
   //  Script beenden// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
-  $email=  $_SESSION['email'] ;
-$message .= "Hallo $email"  ;
+  $email =  $_SESSION['email'];
+  $message .= "Hallo $email";
 }
 
 
 if (empty($error)) {
   // Query erstellen
   $query = "SELECT * from benutzer where email =?";
-  
+
   // Query vorbereiten
   $stmt = $mysqli->prepare($query);
   if ($stmt === false) {
@@ -37,18 +37,15 @@ if (empty($error)) {
   // Daten auslesen
   $result = $stmt->get_result();
 
-  while($row = $result->fetch_assoc()){
+  while ($row = $result->fetch_assoc()) {
 
-    $idBenutzer =$row['idBenutzer'];
+    $idBenutzer = $row['idBenutzer'];
     $vorname = $row['Vorname'];
     $nachname = $row['Name'];
     $email = $row['email'];
     $alter = $row['Alter'];
-
-
-
-}
-$result->free();
+  }
+  $result->free();
 }
 
 
@@ -64,38 +61,37 @@ $result->free();
 
 // Abfrage ausführen, wenn keine Fehler vorhanden sind
 if (empty($error)) {
-    // Query vorbereiten
-    $query = "SELECT * FROM Gewicht";
-    $stmt = $mysqli->prepare($query);
-    if (!$stmt) {
-      $error .= "Query-Vorbereitung fehlgeschlagen: (" . $mysqli->errno . ") " . $mysqli->error;
-    }
-  
-    // Query ausführen und Daten auslesen
-    if (!$stmt->execute()) {
-      $error .= "Query-Ausführung fehlgeschlagen: (" . $stmt->errno . ") " . $stmt->error;
-    } else {
-      $result = $stmt->get_result();
-      while ($row = $result->fetch_assoc()) {
-        // Datenverarbeitung hier
-
-        
-      }
-      $result->free();
-
-    }
-  
-    // Statement schließen
-    $stmt->close();
+  // Query vorbereiten
+  $query = "SELECT * FROM Gewicht";
+  $stmt = $mysqli->prepare($query);
+  if (!$stmt) {
+    $error .= "Query-Vorbereitung fehlgeschlagen: (" . $mysqli->errno . ") " . $mysqli->error;
   }
 
+  // Query ausführen und Daten auslesen
+  if (!$stmt->execute()) {
+    $error .= "Query-Ausführung fehlgeschlagen: (" . $stmt->errno . ") " . $stmt->error;
+  } else {
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      // Datenverarbeitung hier
 
-  if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Uebungsname ausgefüllt?
+
+    }
+    $result->free();
+  }
+
+  // Statement schließen
+  $stmt->close();
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+  // Uebungsname ausgefüllt?
   if (isset($_POST['gewicht'])) {
     //trim and sanitize
     $gewicht = htmlspecialchars(trim($_POST['gewicht']));
-   
+
 
     //mindestens 1 Zeichen und maximal 30 Zeichen lang
     if (empty($gewicht) || strlen($gewicht) > 30) {
@@ -119,42 +115,42 @@ if (empty($error)) {
     $error .= "Geben Sie bitte einen Gewichtsdatum ein.<br />";
   }
 
-    
-    $query = "Insert into gewicht (Benutzer_idBenutzer, Datum, Gewicht) values (?, ?,?)";
-    
-    
-    
-    // Query vorbereiten
-    $stmt = $mysqli->prepare($query);
-    if ($stmt === false) {
-      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
-    }
-    
-    // Parameter an Query binden
-    if (!$stmt->bind_param('sss',$idBenutzer, $datumgewicht, $gewicht)) {
-      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
-    }
 
-    // Query ausführen
-    if (!$stmt->execute()) {
-      $error .= 'execute() failed ' . $mysqli->error . '<br />';
-    }
+  $query = "Insert into gewicht (Benutzer_idBenutzer, Datum, Gewicht) values (?, ?,?)";
 
-    // kein Fehler!
-    if (empty($error)) {
-      $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
-      // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
-      // Verbindung schliessen
-     
-      // Weiterleiten auf login.php
-     
-      // beenden des Scriptes
-      
-    }
+
+
+  // Query vorbereiten
+  $stmt = $mysqli->prepare($query);
+  if ($stmt === false) {
+    $error .= 'prepare() failed ' . $mysqli->error . '<br />';
   }
 
+  // Parameter an Query binden
+  if (!$stmt->bind_param('sss', $idBenutzer, $datumgewicht, $gewicht)) {
+    $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+  }
 
-   
+  // Query ausführen
+  if (!$stmt->execute()) {
+    $error .= 'execute() failed ' . $mysqli->error . '<br />';
+  }
+
+  // kein Fehler!
+  if (empty($error)) {
+    $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
+    // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
+    // Verbindung schliessen
+
+    // Weiterleiten auf login.php
+
+    // beenden des Scriptes
+
+  }
+}
+
+
+
 ?>
 
 
@@ -210,7 +206,7 @@ if (empty($error)) {
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">Gp<span>.</span></a></h1>
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">FM Fitness<span>.</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -219,31 +215,11 @@ if (empty($error)) {
           <li><a class="nav-link scrollto " href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="#about" class="get-started-btn scrollto">Get Started</a>
+      <a href="./account.php" class="get-started-btn scrollto">Logged In <?php echo $vorname ?></a>
 
     </div>
   </header><!-- End Header -->
@@ -255,159 +231,164 @@ if (empty($error)) {
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Inner Page</h2>
+          <h2>Gewichtstracking</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Gewicht Tracking</li>
+            <li><a href="./index.php">Home</a></li>
+            <li><a href="./inner-page.php">Übersicht</a></li>
+            <li>Gewichtstracking</li>
           </ol>
         </div>
 
       </div>
-      <section class="inner-page">
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
       <div class="container">
         <h2>
-          Willkommen Zurück <?php echo $vorname?>
-</h2>
-<h3>Tracke dein Gewicht</h3>
+          Willkommen Zurück <?php echo $vorname ?>
+        </h2>
+        <h3>Tracke dein Gewicht</h3>
       </div>
     </section>
 
-    
+
 
     <form action="" method="post">
-		
-			<h2>Gewicht hinzufügen</h2>
-			
 
-				<!-- Datum -->
-                
-				<div class="form-group">
-					<label for="datumgewicht">Datum:</label>
-					<input type="date" id="datumgewicht" name="datumgewicht" placeholder="Geben Sie din Gewicht an."  required>
-				</div>
+      <h2>Gewicht hinzufügen</h2>
 
-				<!-- Gewicht -->
-				<div class="form-group">
-					<label for="gewicht">Gewicht:</label>
-					<input type="number" id="gewicht" name="gewicht" placeholder="Geben Sie das Gewicht an." maxlength="10">
-				</div>
 
-                <button type="submit" name="button" value="submit" class="btn btn-info">Gewicht Speichern</button>
-           
-                
-			
-		
+      <!-- Datum -->
+
+      <div class="form-group">
+        <label for="datumgewicht">Datum:</label>
+        <input type="date" id="datumgewicht" name="datumgewicht" placeholder="Geben Sie din Gewicht an." required>
+      </div>
+
+      <!-- Gewicht -->
+      <div class="form-group">
+        <label for="gewicht">Gewicht:</label>
+        <input type="number" id="gewicht" name="gewicht" placeholder="Geben Sie das Gewicht an." maxlength="10">
+      </div>
+
+      <button type="submit" name="button" value="submit" class="btn btn-info">Gewicht Speichern</button>
+
+
+
+
     </form>
-  </div>
+    </div>
 
-  <h2>Eingetragene Gewichte</h2>
-<style>
-    ul.gewicht-liste {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
+    <h2>Eingetragene Gewichte</h2>
+    <style>
+      ul.gewicht-liste {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
 
-ul.gewicht-liste li {
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  background-color: #f7f7f7;
-  color: #333;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-}
+      ul.gewicht-liste li {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        background-color: #f7f7f7;
+        color: #333;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+      }
 
-ul.gewicht-liste li:hover {
-  background-color: #eaeaea;
-}
-
-
-</style>
+      ul.gewicht-liste li:hover {
+        background-color: #eaeaea;
+      }
+    </style>
 
 
-  
-<!-- Zuerst benötigen wir die Google Charts API -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- 
-<?php
-// Erstellen der Abfrage und Ausführen, um die Daten aus der Datenbank zu erhalten
-if (empty($error)) {
-    // Query erstellen
-    $query = "SELECT * from gewicht where Benutzer_idBenutzer =?";
-    
-    // Query vorbereiten
-    $stmt = $mysqli->prepare($query);
-    if ($stmt === false) {
-      $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+
+    <!-- Zuerst benötigen wir die Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <?php
+    // Erstellen der Abfrage und Ausführen, um die Daten aus der Datenbank zu erhalten
+    if (empty($error)) {
+      // Query erstellen
+      $query = "SELECT * from gewicht where Benutzer_idBenutzer =?";
+
+      // Query vorbereiten
+      $stmt = $mysqli->prepare($query);
+      if ($stmt === false) {
+        $error .= 'prepare() failed ' . $mysqli->error . '<br />';
+      }
+      // Parameter an Query binden
+      if (!$stmt->bind_param("s", $idBenutzer)) {
+        $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
+      }
+      // Query ausführen
+      if (!$stmt->execute()) {
+        $error .= 'execute() failed ' . $mysqli->error . '<br />';
+      }
+      // Daten auslesen
+      $result = $stmt->get_result();
+
+      // Die Daten in ein Array speichern
+      $data = array();
+      while ($row = $result->fetch_assoc()) {
+        $gewichtausgelesen = $row['Gewicht'];
+        $datumausgelesen = $row['Datum'];
+        $data[] = array('Datum' => $datumausgelesen, 'Gewicht' => (float) $gewichtausgelesen);
+
+        echo "<ul class='gewicht-liste'>";
+        echo "<li>Gewicht: " . $gewichtausgelesen  . ", Datum: " . $datumausgelesen . "</li>";
+        echo "</ul>";
+      }
+
+      // Daten in das JSON-Format konvertieren
+      $json_data = json_encode($data);
+
+      $result->free();
     }
-    // Parameter an Query binden
-    if (!$stmt->bind_param("s", $idBenutzer)) {
-      $error .= 'bind_param() failed ' . $mysqli->error . '<br />';
-    }
-    // Query ausführen
-    if (!$stmt->execute()) {
-      $error .= 'execute() failed ' . $mysqli->error . '<br />';
-    }
-    // Daten auslesen
-    $result = $stmt->get_result();
 
-    // Die Daten in ein Array speichern
-    $data = array();
-    while($row = $result->fetch_assoc()){
-      $gewichtausgelesen = $row['Gewicht'];
-      $datumausgelesen = $row['Datum'];
-      $data[] = array('Datum' => $datumausgelesen, 'Gewicht' => (float) $gewichtausgelesen);
+    ?>
 
-      echo "<ul class='gewicht-liste'>";
-      echo "<li>Gewicht: " . $gewichtausgelesen  . ", Datum: " . $datumausgelesen . "</li>";
-      echo "</ul>";
-    }
+    <!-- Erstellen des Liniendiagramms mit Google Charts -->
+    <div id="chart_div"></div>
+    <script>
+      // Laden der Charts API
+      google.charts.load('current', {
+        'packages': ['corechart']
+      });
 
-    // Daten in das JSON-Format konvertieren
-    $json_data = json_encode($data);
-  
-    $result->free();
-}
+      // Erstellen der Callback-Funktion
+      google.charts.setOnLoadCallback(drawChart);
 
-?>
+      // Erstellen des Diagramms
+      function drawChart() {
+        // Daten in das JSON-Format konvertieren
+        var jsonData = <?php echo $json_data; ?>;
 
-<!-- Erstellen des Liniendiagramms mit Google Charts -->
-<div id="chart_div"></div>
-<script>
-// Laden der Charts API
-google.charts.load('current', {'packages':['corechart']});
+        // Erstellen eines neuen DataTable-Objekts
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Datum');
+        data.addColumn('number', 'Gewicht');
 
-// Erstellen der Callback-Funktion
-google.charts.setOnLoadCallback(drawChart);
+        // Daten hinzufügen
+        for (var i = 0; i < jsonData.length; i++) {
+          var date = new Date(jsonData[i].Datum);
+          data.addRow([date, jsonData[i].Gewicht]);
+        }
 
-// Erstellen des Diagramms
-function drawChart() {
-  // Daten in das JSON-Format konvertieren
-  var jsonData = <?php echo $json_data; ?>;
-  
-  // Erstellen eines neuen DataTable-Objekts
-  var data = new google.visualization.DataTable();
-  data.addColumn('date', 'Datum');
-  data.addColumn('number', 'Gewicht');
+        // Erstellen des Liniendiagramms
+        var options = {
+          title: 'Gewicht über die Zeit',
+          curveType: 'function',
+          legend: {
+            position: 'bottom'
+          }
+        };
 
-  // Daten hinzufügen
-  for (var i = 0; i < jsonData.length; i++) {
-    var date = new Date(jsonData[i].Datum);
-    data.addRow([date, jsonData[i].Gewicht]);
-  }
-
-  // Erstellen des Liniendiagramms
-  var options = {
-    title: 'Gewicht über die Zeit',
-    curveType: 'function',
-    legend: { position: 'bottom' }
-  };
-
-  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-  chart.draw(data, options);
-}
-</script>
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
 
 
 
@@ -417,88 +398,14 @@ function drawChart() {
 
 
     </section>
-    <!-- End Breadcrumbs -->
 
 
 
 
-  
+
+
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>Gp<span>.</span></h3>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
-              </p>
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Gp</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

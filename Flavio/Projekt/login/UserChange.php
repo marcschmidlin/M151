@@ -39,17 +39,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else {
 		$error .= "Geben Sie bitte das Passwort an.<br />";
 	}
-// password
-if (isset($_POST['newemail'])) {
-	//trim and sanitize
-	$newemail = trim($_POST['newemail']);
-	// passwort gültig?
-	if (empty($newemail) || strlen($newemail) > 100 || filter_var($newemail, FILTER_VALIDATE_EMAIL) === false) {
-		$error .= "Email entspricht nicht dem geforderten Format.<br />";
+	// password
+	if (isset($_POST['newemail'])) {
+		//trim and sanitize
+		$newemail = trim($_POST['newemail']);
+		// passwort gültig?
+		if (empty($newemail) || strlen($newemail) > 100 || filter_var($newemail, FILTER_VALIDATE_EMAIL) === false) {
+			$error .= "Email entspricht nicht dem geforderten Format.<br />";
+		}
+	} else {
+		$error .= "Geben Sie bitte das Neue Passwort an.<br />";
 	}
-} else {
-	$error .= "Geben Sie bitte das Neue Passwort an.<br />";
-}
 
 	// kein Fehler
 	if (empty($error)) {
@@ -93,7 +93,7 @@ if (isset($_POST['newemail'])) {
 					$error .= 'prepare() failed ' . $mysqli->error . '<br />';
 				}
 				// Parameter an Query binden
-				if (!$stmt->bind_param('ss',$newemail,$email)) {
+				if (!$stmt->bind_param('ss', $newemail, $email)) {
 					$error .= 'bind_param() failed ' . $mysqli->error . '<br />';
 				}
 				// Query ausführen

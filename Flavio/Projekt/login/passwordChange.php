@@ -39,17 +39,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else {
 		$error .= "Geben Sie bitte das Passwort an.<br />";
 	}
-// password
-if (isset($_POST['newPasswort'])) {
-	//trim and sanitize
-	$newpassword = trim($_POST['newPasswort']);
-	// passwort gültig?
-	if (empty($newpassword) || !preg_match("/(?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $newpassword)) {
-		$error .= "Das Passwort entspricht nicht dem geforderten Format.<br />";
+	// password
+	if (isset($_POST['newPasswort'])) {
+		//trim and sanitize
+		$newpassword = trim($_POST['newPasswort']);
+		// passwort gültig?
+		if (empty($newpassword) || !preg_match("/(?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $newpassword)) {
+			$error .= "Das Passwort entspricht nicht dem geforderten Format.<br />";
+		}
+	} else {
+		$error .= "Geben Sie bitte das Neue Passwort an.<br />";
 	}
-} else {
-	$error .= "Geben Sie bitte das Neue Passwort an.<br />";
-}
 
 	// kein Fehler
 	if (empty($error)) {
@@ -95,7 +95,7 @@ if (isset($_POST['newPasswort'])) {
 					$error .= 'prepare() failed ' . $mysqli->error . '<br />';
 				}
 				// Parameter an Query binden
-				if (!$stmt->bind_param('ss',$newpassword_hash,$email)) {
+				if (!$stmt->bind_param('ss', $newpassword_hash, $email)) {
 					$error .= 'bind_param() failed ' . $mysqli->error . '<br />';
 				}
 				// Query ausführen
