@@ -74,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $query1 = "SELECT * FROM benutzer WHERE email= ?";
     
     // Query vorbereiten
-    $stmt = $mysqli->prepare($query1);
-    if ($stmt === false) {
+    $stmt1 = $mysqli->prepare($query1);
+    if ($stmt1 === false) {
       $error .= 'prepare() failed ' . $mysqli->error . '<br />';
     }
     
