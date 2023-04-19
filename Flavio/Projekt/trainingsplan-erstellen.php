@@ -307,8 +307,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CRaleway:300,300i,400,400i,500,500i,600,600i,700,700i%7CPoppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -328,12 +327,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-</head>
-
-
-<body>
-
-<style>
+  <style>
 		/* Stil für das Pop-up */
 		#popup {
 			display: none;
@@ -356,6 +350,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			width: 80%;
 		}
 	</style>
+</head>
+
+
+<body>
+
+
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
@@ -406,43 +406,39 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
 
 		
-        <form action="" method="post">
+        <form method="post">
 
 <label for="trainingplanname">Trainingsplan Name:</label>
 
 <input type="text" id="trainingplanname" name="trainingplanname"><br><br>
 			<h2>Übung hinzufügen</h2>
-			<form>
-				<!-- Übungsname -->
 				
-					<label for="uebungname">Übungsname:</label>
-					<input type="text" id="uebungname" name="uebungname1" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+					<label for="uebungname1">Übungsname:</label>
+					<input type="text" id="uebungname1" name="uebungname1" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
 				
-
-				<!-- Zielmuskel -->
-				
-					<label for="zielmuskel">Zielmuskel:</label>
-					<input type="text" id="zielmuskel" name="zielmuskel1" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
+					<label for="zielmuskel1">Zielmuskel:</label>
+					<input type="text" id="zielmuskel1" name="zielmuskel1" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
 
 
                     <label for="uebungname2">Übungsname:</label>
-					<input type="text" id="uebungname" name="uebungname2" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+					<input type="text" id="uebungname2" name="uebungname2" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
 
 					<label for="zielmuskel2">Zielmuskel:</label>
 					<input type="text" id="zielmuskel2" name="zielmuskel2" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
 
-                    <label for="uebungname2">Übungsname:</label>
-					<input type="text" id="uebungname" name="uebungname3" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
+                    <label for="uebungname3">Übungsname:</label>
+					<input type="text" id="uebungname3" name="uebungname3" placeholder="Geben Sie den Übungsnamen an." maxlength="30" required>
 
-					<label for="zielmuskel2">Zielmuskel:</label>
-					<input type="text" id="zielmuskel2" name="zielmuskel3" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
+					<label for="zielmuskel3">Zielmuskel:</label>
+					<input type="text" id="zielmuskel3" name="zielmuskel3" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required><br>
 				
 
 				
 
                 <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
                 
-
+        </form>
+      </section>
                 <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
@@ -452,16 +448,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           <a href="./trainingsplan.php">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="./trainingsplan.php">Öffne deine Trainingspläne</a></h4>
+              <h4>Öffne deine Trainingspläne</h4>
               <p>Verwende einer deiner erstellten Trainingspläne</p>
             </div>
             </a>
           </div>
 
-</a>
+
+        </div>
         </div>
 
-			</form>
+			
 
 
  
