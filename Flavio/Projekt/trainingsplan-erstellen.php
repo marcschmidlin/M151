@@ -429,16 +429,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 					<input type="text" id="zielmuskel2" name="zielmuskel2" placeholder="Geben Sie den Zielmuskel an." maxlength="30" required>
 				</div>
 
-				<!-- Gewicht -->
-				<div class="form-group">
-					<label for="weight">Gewicht:</label>
-					<input type="text" id="weight" name="gewicht1" placeholder="Geben Sie das Gewicht an." maxlength="10">
-				</div>
-
-                <div class="form-group">
-					<label for="weight">Gewicht:</label>
-					<input type="text" id="weight" name="gewicht2" placeholder="Geben Sie das Gewicht an." maxlength="10">
-				</div>
+				
 
                 <button type="submit" name="button" value="submit" class="btn btn-info">Speichern</button>
           
@@ -501,7 +492,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         neue_uebung.className = "uebung";
         neue_uebung.innerHTML = `
           <label for="uebung">Übung:</label>
-          <select id="uebung` + index +`` " name="uebung[]">
+          <select id="uebung` + index +` " name="uebung[]">
             <option value="">Bitte wählen</option>
             <option value="Bankdrücken">Bankdrücken</option>
             <option value="Kniebeugen">Kniebeugen</option>
