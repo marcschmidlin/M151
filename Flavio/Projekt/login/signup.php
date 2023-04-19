@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (empty($error)) {
 	
     // Query erstellen
-    $query1 = "Select from benutzer (Name, Vorname, email, Passwort) values (?,?,?,?)";
+    $query1 = "SELECT * FROM benutzer WHERE email= ?";
     
     // Query vorbereiten
     $stmt = $mysqli->prepare($query1);
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $error .= 'execute() failed ' . $mysqli->error . '<br />';
     }
   }
-  if ($query1 == $email){
+  if (mysqli_num_rows($result) != 0){
     $error .= "Email schon vorhanden<br />";
   }
   else{
