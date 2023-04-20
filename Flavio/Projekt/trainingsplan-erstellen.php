@@ -162,9 +162,23 @@ if (empty($error)) {
   }
 
 
-  //Übung 1
+  //Trainingsplanname
 
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
+     // Trainingsplanname ausgefüllt?
+  if (isset($_POST['trainingplanname'])) {
+    //trim and sanitize
+    $trainingplanname = htmlspecialchars(trim($_POST['trainingplanname']));
+
+    //mindestens 1 Zeichen und maximal 30 Zeichen lang
+    if (empty($trainingplanname) || strlen($trainingplanname) > 30) {
+      $error .= "Geben Sie bitte einen korrekten Vornamen ein.<br />";
+    }
+  } else {
+    $error .= "Geben Sie bitte einen Uebungsnamen ein.<br />";
+  }
+
+
     // Uebungsname ausgefüllt?
   if (isset($_POST['uebungname1'])) {
     //trim and sanitize
@@ -273,7 +287,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($error)) {
       $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
       // Felder leeren und Weiterleitung auf anderes Script: z.B. Login!
-
+      header('location: ./trainingsplan.php');
       // Verbindung schliessen
       
       // Weiterleiten auf login.php
@@ -362,8 +376,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="container d-flex align-items-center justify-content-lg-between">
 
       <h1 class="logo me-auto me-lg-0"><a href="index.html">FM Fitness<span>.</span></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -410,7 +422,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <label for="trainingplanname">Trainingsplan Name:</label>
 
-<input type="text" id="trainingplanname" name="trainingplanname"><br><br>
+<input type="text" id="trainingplanname" name="trainingplanname" placeholder="Geben Sie einen Trainingsplannamen ein." maxlength="45" required><br><br>
 			<h2>Übung hinzufügen</h2>
 				
 					<label for="uebungname1">Übungsname:</label>
